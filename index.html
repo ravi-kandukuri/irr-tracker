@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Investment IRR Tracker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- Home -->
+    <section id="homePage" class="page">
+      <header class="page-header">
+        <h1>Investment IRR Tracker</h1>
+        <p>Track properties, term deposits, gold, gold bonds, shares, and crypto with real cashflows.</p>
+      </header>
+      <div class="home-actions">
+        <button id="newSessionBtn">New session</button>
+        <button id="loadSessionBtn">Load session</button>
+        <input id="payloadInput" type="file" accept=".json" hidden />
+      </div>
+    </section>
+
+    <!-- Wizard -->
+    <section id="wizardPage" class="page hidden">
+      <header class="page-header">
+        <h2>Add / Edit Investment</h2>
+        <p>Choose an investment type and mode. We’ll guide you step by step.</p>
+      </header>
+
+      <div class="card">
+        <label>Investment name</label>
+        <input id="invName" placeholder="e.g. Bridgeman Downs Rental" />
+
+        <label>Investment type</label>
+        <select id="invType">
+          <option value="property">🏠 Property</option>
+          <option value="shares">📈 Shares</option>
+          <option value="crypto">🔗 Crypto</option>
+          <option value="gold">🪙 Gold</option>
+          <option value="goldbonds">📜 Gold Bonds</option>
+          <option value="termdeposit">💵 Term Deposit</option>
+        </select>
+
+        <!-- Mode container (simple/detailed, rent/sell, etc.) -->
+        <div id="modeContainer"></div>
+
+        <!-- Dynamic wizard content -->
+        <div id="wizardContent"></div>
+
+        <!-- Results -->
+        <div class="card" id="resultsCard">
+          <h3>Results</h3>
+          <p id="irrResult">IRR: –</p>
+          <p id="npvResult">NPV: –</p>
+          <p id="roiResult">ROI: –</p>
+          <p id="paybackResult">Payback: –</p>
+          <canvas id="cashflowChart"></canvas>
+        </div>
+
+        <div class="actions">
+          <button id="saveInvestmentBtn">Save investment</button>
+          <button id="newInvestmentBtn" class="secondary">Add another investment</button>
+          <button id="goSummaryBtn" class="secondary">Go to summary</button>
+          <button id="backHomeBtn" class="secondary">Back to home</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Summary -->
+    <section id="summaryPage" class="page hidden">
+      <header class="page-header">
+        <h2>Summary</h2>
+        <p>See how all your investments are performing.</p>
+      </header>
+
+      <div id="summaryList"></div>
+
+      <div class="actions">
+        <button id="downloadPdfBtn">Download PDF</button>
+        <button id="downloadPayloadBtn" class="secondary">Download payload</button>
+        <button id="addInvestmentFromSummaryBtn" class="secondary">Add investment</button>
+        <button id="backHomeFromSummaryBtn" class="secondary">Home</button>
+      </div>
+    </section>
+  </div>
+
+  <!-- Core scripts -->
+  <script src="js/calculations.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/property.js"></script>
+  <script src="js/shares.js"></script>
+  <script src="js/crypto.js"></script>
+  <script src="js/gold.js"></script>
+  <script src="js/goldbonds.js"></script>
+  <script src="js/termdeposit.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
