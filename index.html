@@ -253,7 +253,9 @@ p{color:var(--muted);line-height:1.65}
       <button class="nbtn on" onclick="showPage('home')"><span class="nicon">⬡</span>Overview</button>
       <button class="nbtn"    onclick="showPage('investments')"><span class="nicon">▲</span>Investments</button>
       <button class="nbtn"    onclick="showPage('income')"><span class="nicon">●</span>Income</button>
+      <button class="nbtn"    onclick="showPage('projection')"><span class="nicon">◌</span>Projection</button>
       <button class="nbtn"    onclick="showPage('summary')"><span class="nicon">◎</span>Summary</button>
+      <button class="nbtn"    onclick="showPage('retirement')"><span class="nicon">◍</span>Retirement pathway</button>
     </nav>
     <div class="sfooter">
       <div class="disclaimer">
@@ -391,7 +393,29 @@ p{color:var(--muted);line-height:1.65}
       </div>
       <div class="brow mt16">
         <button class="btn bo" onclick="prevToInvestments()">← Back</button>
-        <button class="btn bp" onclick="gotoSummaryFromIncome()">Next: Summary</button>
+        <button class="btn bp" onclick="gotoProjectionFromIncome()">Next: Projection</button>
+      </div>
+    </section>
+
+    <!-- PAGE: CURRENT ALLOCATION FUTURE PROJECTION -->
+    <section class="pg" id="pg-projection">
+      <div class="phead">
+        <div><span class="eyebrow">Performance check</span><h2>Current Allocation Future Projection</h2></div>
+      </div>
+      <div class="card">
+        <p class="note">Compare each investment’s current IRR against an industry-style benchmark to see which assets are helping your wealth grow and which may need attention.</p>
+      </div>
+      <div class="card mt16">
+        <p class="clbl">IRR vs market benchmark</p>
+        <div id="projectionComboChart"></div>
+      </div>
+      <div class="card mt16">
+        <p class="clbl">Investment-by-investment insights</p>
+        <div id="projectionInsights" class="iblock"></div>
+      </div>
+      <div class="brow mt16">
+        <button class="btn bo" onclick="prevToIncome()">← Back</button>
+        <button class="btn bp" onclick="gotoSummaryFromProjection()">Next: Summary</button>
       </div>
     </section>
 
@@ -406,7 +430,9 @@ p{color:var(--muted);line-height:1.65}
           <span>Desired Risk Profile</span>
           <select id="targetPortfolioType" onchange="saveTargetPortfolioType()" style="font-family:inherit">
             <option value="Conservative">Conservative</option>
+            <option value="Stable">Stable</option>
             <option value="Balanced">Balanced</option>
+            <option value="Moderate Growth">Moderate Growth</option>
             <option value="Growth">Growth</option>
             <option value="High Growth">High Growth</option>
           </select>
@@ -440,15 +466,37 @@ p{color:var(--muted);line-height:1.65}
         </div>
         <div class="card mt16" id="summaryInsightsCardDesired"></div>
       </div>
-      <div class="card mt16" style="margin-top:16px">
-        <div class="field" style="margin-bottom:14px"><span>Export</span><p class="note" style="margin-top:8px">Save your investment and income details to your device. This allows you to import your information and continue editing later, without having to start over.</p></div>
-        <button class="btn bp" onclick="doExport()">⬇ Export JSON</button>
-      </div>
       <div class="brow mt16">
         <button class="btn bo" onclick="prevToIncome()">← Back to Income</button>
+        <button class="btn bp" onclick="gotoRetirementFromSummary()">Next: Retirement pathway</button>
       </div>
       <div class="disclaimer mt16">
         <strong>Disclaimer:</strong> This app provides general financial insights only and is not personal financial advice. Consider obtaining advice from a qualified and licensed financial adviser or certified wealth planner before acting on any information shown here.
+      </div>
+    </section>
+
+    <!-- PAGE: RETIREMENT PATHWAY -->
+    <section class="pg" id="pg-retirement">
+      <div class="phead">
+        <div><span class="eyebrow">Retirement planning</span><h2>Retirement pathway</h2></div>
+      </div>
+      <div class="card">
+        <span class="eyebrow">Expected path</span>
+        <h3>What your age and lifestyle suggest</h3>
+        <div id="retirementExpectedPath" class="mt12"></div>
+      </div>
+      <div class="card mt16">
+        <span class="eyebrow">Actual path</span>
+        <h3>Based on your real data</h3>
+        <div id="retirementActualPath" class="mt12"></div>
+      </div>
+      <div class="card mt16">
+        <div class="field" style="margin-bottom:14px"><span>Export</span><p class="note" style="margin-top:8px">Save your investment and income details to your device so you can import them later or start a fresh plan from the home page.</p></div>
+        <button class="btn bp" onclick="doExport()">⬇ Export JSON</button>
+      </div>
+      <div class="brow mt16">
+        <button class="btn bo" onclick="prevToSummary()">← Back to Summary</button>
+        <button class="btn bp" onclick="startFreshFromRetirement()">Home</button>
       </div>
     </section>
 
@@ -479,15 +527,16 @@ var ST = (function(){
   try {
     var r = JSON.parse(localStorage.getItem(SK));
     if (r && typeof r === 'object') {
-      r.profile     = r.profile     || {name:'',age:'',targetType:'Balanced'};
+      r.profile     = r.profile     || {name:'',age:'',lifestyle:'Comfortable',targetType:'Balanced'};
       r.profile.targetType = r.profile.targetType || 'Balanced';
+      r.profile.lifestyle = r.profile.lifestyle || 'Comfortable';
       r.investments = Array.isArray(r.investments) ? r.investments : [];
       r.income      = Array.isArray(r.income)      ? r.income      : [];
       r.meta       = r.meta       || {importedFromJson:false,investPopupShown:false,incomePopupShown:false};
       return r;
     }
   } catch(e) {}
-  return {profile:{name:'',age:'',targetType:'Balanced'},investments:[],income:[],meta:{importedFromJson:false,investPopupShown:false,incomePopupShown:false}};
+  return {profile:{name:'',age:'',lifestyle:'Comfortable',targetType:'Balanced'},investments:[],income:[],meta:{importedFromJson:false,investPopupShown:false,incomePopupShown:false}};
 })();
 
 function persist() {
@@ -496,20 +545,51 @@ function persist() {
 
 function clearStoredState() {
   try { localStorage.removeItem(SK); } catch(e) {}
-  ST = {profile:{name:'',age:'',targetType:'Balanced'},investments:[],income:[],meta:{importedFromJson:false,investPopupShown:false,incomePopupShown:false}};
+  ST = {profile:{name:'',age:'',lifestyle:'Comfortable',targetType:'Balanced'},investments:[],income:[],meta:{importedFromJson:false,investPopupShown:false,incomePopupShown:false}};
 }
 
 function normalizeRiskProfile(value) {
   var v = (value || 'Balanced').toString().trim();
   if (v === 'Aggressive' || v === 'High Growth') return 'High Growth';
+  if (v === 'Moderate Growth') return 'Moderate Growth';
+  if (v === 'Stable') return 'Stable';
   if (v === 'Conservative' || v === 'Balanced' || v === 'Growth' || v === 'High Growth') return v;
   return 'Balanced';
 }
 
 function getPreferredPortfolioType() {
   var select = document.getElementById('targetPortfolioType');
-  var value = select ? select.value : (ST.profile.targetType || 'Balanced');
-  return normalizeRiskProfile(value);
+  var value = select ? select.value : null;
+  if (value && value !== 'Balanced') {
+    return normalizeRiskProfile(value);
+  }
+  return normalizeRiskProfile(ST.profile.targetType || 'Balanced');
+}
+
+function getLifestyleValue() {
+  var el = document.getElementById('pLifestyle');
+  var value = el ? el.value : (ST.profile.lifestyle || 'Comfortable');
+  return value || 'Comfortable';
+}
+
+function getSuggestedRiskProfile(age, lifestyle) {
+  var ageValue = Number(age)||30;
+  var lifestyleValue = (lifestyle || 'Comfortable').toString().trim();
+  if (ageValue < 30) return 'High Growth';
+  if (ageValue < 40) return lifestyleValue === 'Luxury' ? 'High Growth' : 'Growth';
+  if (ageValue < 50) return lifestyleValue === 'Luxury' ? 'Growth' : 'Balanced';
+  if (ageValue < 60) return lifestyleValue === 'Luxury' ? 'Balanced' : 'Moderate Growth';
+  if (ageValue < 70) return lifestyleValue === 'Luxury' ? 'Moderate Growth' : 'Stable';
+  return 'Conservative';
+}
+
+function applySuggestedRiskProfile() {
+  var suggested = getSuggestedRiskProfile(ST.profile.age, ST.profile.lifestyle);
+  ST.profile.targetType = normalizeRiskProfile(suggested);
+  var select = document.getElementById('targetPortfolioType');
+  if (select) select.value = ST.profile.targetType;
+  persist();
+  return ST.profile.targetType;
 }
 
 function saveTargetPortfolioType() {
@@ -525,8 +605,10 @@ function resetAppState() {
   clearStoredState();
   var nameEl = document.getElementById('pName');
   var ageEl = document.getElementById('pAge');
+  var lifestyleEl = document.getElementById('pLifestyle');
   if (nameEl) nameEl.value = '';
   if (ageEl) ageEl.value = '';
+  if (lifestyleEl) lifestyleEl.value = 'Comfortable';
   var select = document.getElementById('targetPortfolioType');
   if (select) select.value = 'Balanced';
   renderHomeStats();
@@ -586,12 +668,39 @@ function gotoSummaryFromIncome() {
   showPage('summary');
 }
 
+function gotoProjectionFromIncome() {
+  showPage('projection');
+}
+
+function gotoSummaryFromProjection() {
+  showPage('summary');
+}
+
+function gotoRetirementFromSummary() {
+  showPage('retirement');
+}
+
 function prevToInvestments() {
   showPage('investments');
 }
 
 function prevToIncome() {
   showPage('income');
+}
+
+function prevToSummary() {
+  showPage('summary');
+}
+
+function startFreshFromRetirement() {
+  clearStoredState();
+  renderHomeStats();
+  renderInvList();
+  renderIncList();
+  renderNavButtons();
+  selectHomeMode('new');
+  hydrateProfileFields();
+  showPage('home');
 }
 
 var _summaryActiveTab = 'current';
@@ -849,7 +958,9 @@ function showPage(name) {
     if(b.getAttribute('onclick')==="showPage('"+name+"')") b.classList.add('on');
   });
   if(name==='summary') renderSummary();
-  if(name==='home')    renderHomeStats();
+  if(name==='projection') renderProjectionPage();
+  if(name==='retirement') renderRetirementPage();
+  if(name==='home') renderHomeStats();
   document.getElementById('sidebar').classList.remove('open');
   document.getElementById('ov').classList.remove('show');
 }
@@ -864,8 +975,10 @@ document.getElementById('ov').addEventListener('click', toggleSidebar);
 function hydrateProfileFields() {
   var nameEl = document.getElementById('pName');
   var ageEl = document.getElementById('pAge');
+  var lifestyleEl = document.getElementById('pLifestyle');
   if(nameEl) nameEl.value = ST.profile.name||'';
   if(ageEl) ageEl.value = ST.profile.age||'';
+  if(lifestyleEl) lifestyleEl.value = ST.profile.lifestyle || 'Comfortable';
 }
 
 hydrateProfileFields();
@@ -873,9 +986,13 @@ hydrateProfileFields();
 function saveProfile() {
   var nameEl = document.getElementById('pName');
   var ageEl = document.getElementById('pAge');
+  var lifestyleEl = document.getElementById('pLifestyle');
   if(nameEl) ST.profile.name = nameEl.value;
   if(ageEl) ST.profile.age = ageEl.value;
-  ST.profile.targetType = ST.profile.targetType || 'Balanced';
+  if(lifestyleEl) ST.profile.lifestyle = lifestyleEl.value || 'Comfortable';
+  if(!ST.profile.targetType || ST.profile.targetType === 'Balanced') {
+    ST.profile.targetType = getSuggestedRiskProfile(ST.profile.age, ST.profile.lifestyle);
+  }
   persist();
   renderHomeStats();
 }
@@ -891,7 +1008,7 @@ function selectHomeMode(mode) {
   if(mode==='existing'){
     panel.innerHTML = '<div class="home-mode-card"><span class="eyebrow">Resume</span><h3>Import your saved file</h3><p class="note mt8">Upload a previously exported JSON file to continue editing your investment and income details.</p><label class="btn bp mt8" style="cursor:pointer;width:max-content">⬆ Import JSON<input type="file" id="importFileHome" accept=".json" style="display:none" onchange="doImport(event)"></label></div>';
   } else if(mode==='new'){
-    panel.innerHTML = '<div class="home-mode-card"><span class="eyebrow">Profile</span><h3>Investor basics</h3><div class="fgrid mt12"><div class="field"><span>Full name</span><input id="pName" type="text" placeholder="e.g. Alex Smith" oninput="saveProfile()"></div><div class="field"><span>Age</span><input id="pAge" type="number" min="1" max="100" placeholder="e.g. 35" oninput="saveProfile()"></div></div><p class="note mt12">Age is used to shape the recommended allocation shown in Summary.</p><div class="brow mt16"><button id="homeTrackBtn" class="btn bp" onclick="trackInvestments()">Track Investments</button></div></div>';
+    panel.innerHTML = '<div class="home-mode-card"><span class="eyebrow">Profile</span><h3>Investor basics</h3><div class="fgrid mt12"><div class="field"><span>Full name</span><input id="pName" type="text" placeholder="e.g. Alex Smith" oninput="saveProfile()"></div><div class="field"><span>Age</span><input id="pAge" type="number" min="1" max="100" placeholder="e.g. 35" oninput="saveProfile()"></div></div><div class="field mt12"><span>Retirement lifestyle <span title="What Each Category Means\n1. Basic Lifestyle\nCovers essentials only\nHeavy reliance on the Age Pension\nNo travel, no dining out, no new car\nVery limited discretionary spending\n\n2. Modest Lifestyle\nSlightly better than basic\nOccasional meals out\nLimited domestic travel\nOlder car, minimal upgrades\nStill relies partly on Age Pension\n\n3. Comfortable Lifestyle (ASFA’s main benchmark)\nRegular dining out\nDomestic + some international travel\nPrivate health insurance\nNew car every 5–7 years\nGood technology, hobbies, entertainment\n\n4. Luxury Lifestyle (above ASFA Comfortable)\nMultiple international trips\nPremium dining, entertainment\nHigh-end car every 5 years\nNo financial stress\nAbility to help children, donate, upgrade home">ⓘ</span></span><select id="pLifestyle" onchange="saveProfile()"><option value="Basic">Basic</option><option value="Modest">Modest</option><option value="Comfortable">Comfortable</option><option value="Luxury">Luxury</option></select></div><p class="note mt12">Age and lifestyle are used to shape the recommended allocation shown in Summary.</p><div class="brow mt16"><button id="homeTrackBtn" class="btn bp" onclick="trackInvestments()">Track Investments</button></div></div>';
     hydrateProfileFields();
   } else {
     panel.innerHTML = '<div class="home-mode-card"><span class="eyebrow">Start</span><h3>Select a path</h3><p class="note mt8">Choose New User to create a fresh profile or Existing User to import a saved JSON file.</p></div>';
@@ -1210,6 +1327,42 @@ function grouped(id,cats,s1,s2,n1,n2){
   });
 }
 
+// ── PROJECTION ────────────────────────────────────────────────
+function getBenchmarkIRR(type) {
+  var map = {property:8, shares:10, crypto:12, gold:6, goldbonds:7, bonds:4, termdeposit:3.5, cash:2.5};
+  return map[type] || 7;
+}
+
+function renderProjectionPage() {
+  var items = ST.investments.map(function(iv){
+    var irr = getIRR(iv);
+    return {name:iv.name,type:iv.type,irr:irr == null ? null : Number(irr.toFixed(2)),benchmark:getBenchmarkIRR(iv.type)};
+  }).filter(function(item){ return item.irr != null; });
+
+  if(!items.length){
+    document.getElementById('projectionComboChart').innerHTML = '<div class="empty">Add investments with cost and value data to compare them with market benchmarks.</div>';
+    document.getElementById('projectionInsights').innerHTML = '<div class="empty">The projection view will appear here once you add one or more investments.</div>';
+    return;
+  }
+
+  var categories = items.map(function(item){ return item.name; });
+  var userSeries = items.map(function(item){ return Number(item.irr); });
+  var benchmarkSeries = items.map(function(item){ return Number(item.benchmark); });
+  mkChart('projectionComboChart',{chart:Object.assign({},DB.chart,{type:'bar',height:320}),theme:DB.theme,grid:DB.grid,legend:Object.assign({},DB.legend),dataLabels:DB.dataLabels,tooltip:DB.tooltip,
+    series:[{name:'Your IRR',type:'bar',data:userSeries},{name:'Industry benchmark',type:'line',data:benchmarkSeries}],xaxis:{categories:categories},
+    yaxis:{labels:{formatter:function(v){return v+'%';}}},colors:['#22d3a3','#f87171'],stroke:{width:[0,3]},plotOptions:{bar:{borderRadius:5,columnWidth:'55%'}},responsive:[{breakpoint:600,options:{chart:{height:260}}}]});
+
+  var insights = items.map(function(item){
+    var delta = Number(item.irr) - Number(item.benchmark);
+    var verdict = delta >= 0 ? 'outperforming' : 'underperforming';
+    var advice = delta >= 0
+      ? 'This is outperforming the market benchmark, so keep the position and focus on minimising fees or adding new contributions to preserve the edge.'
+      : 'This is trailing the industry benchmark, so lowering fees, extending the holding period, or shifting capital into a better-performing sleeve could improve the return.';
+    return '<div class="iitem"><strong>'+item.name+' ('+item.type+')</strong><br>Your IRR: <strong>'+pct(item.irr)+'</strong> vs benchmark <strong>'+pct(item.benchmark)+'</strong>. '+advice+'</div>';
+  }).join('');
+  document.getElementById('projectionInsights').innerHTML = insights;
+}
+
 // ── SUMMARY ───────────────────────────────────────────────────
 function renderSummaryInsights(tab) {
   var active = tab || (_summaryActiveTab || 'current');
@@ -1277,6 +1430,9 @@ function renderSummary(){
   var t=allocs(),total=totalPf(),inc=totalIncome(),irr=avgIRR(),type=classify(t);
   var age=Number(ST.profile.age)||30;
   var preferred=getPreferredPortfolioType();
+  if(document.getElementById('targetPortfolioType')) {
+    document.getElementById('targetPortfolioType').value = preferred;
+  }
   var rec=recAlloc(age,preferred);
   var proj=projection(getExpectedProjectionRate(preferred));
   var currentProj=projection(getExpectedProjectionRate(type));
@@ -1322,6 +1478,67 @@ function renderSummary(){
   switchSummaryTab(_summaryActiveTab || 'current');
 }
 
+// ── RETIREMENT PATHWAY ───────────────────────────────────────
+function getRetirementMapping(age) {
+  var ageValue = Number(age)||30;
+  if(ageValue < 30) return {risk:'High Growth', requiredSingle:[120000,180000], requiredCouple:[180000,260000], likely:'Basic → Modest', luxury:'Possible with high income + early investing'};
+  if(ageValue < 40) return {risk:'Growth', requiredSingle:[250000,400000], requiredCouple:[450000,650000], likely:'Modest → Comfortable', luxury:'Yes, if savings rate is strong'};
+  if(ageValue < 50) return {risk:'Balanced', requiredSingle:[550000,850000], requiredCouple:[900000,1400000], likely:'Comfortable', luxury:'Achievable for high earners'};
+  if(ageValue < 60) return {risk:'Moderate Growth', requiredSingle:[1100000,1600000], requiredCouple:[1800000,2600000], likely:'Comfortable → Luxury', luxury:'Very achievable with catch-up contributions'};
+  if(ageValue < 68) return {risk:'Stable', requiredSingle:[1900000,2300000], requiredCouple:[3000000,3500000], likely:'Comfortable → Luxury', luxury:'Depends on final super + assets'};
+  return {risk:'Conservative', requiredSingle:[null,null], requiredCouple:[null,null], likely:'Anywhere from Basic → Luxury', luxury:'Requires $2.2M–$4.5M nest egg'};
+}
+
+function renderRetirementPage() {
+  var age = Number(ST.profile.age)||30;
+  var lifestyle = ST.profile.lifestyle || 'Comfortable';
+  var mapping = getRetirementMapping(age);
+  var targetProfile = normalizeRiskProfile(ST.profile.targetType || getSuggestedRiskProfile(age, lifestyle));
+  var currentValue = totalPf();
+  var annualIncome = totalIncome();
+  var contributionRate = 0.15;
+  var annualContribution = annualIncome * contributionRate;
+  var yearsToRetirement = Math.max(0, 67 - age);
+  var growthRate = getExpectedProjectionRate(targetProfile);
+  var projectedValue = currentValue;
+  for (var y = 0; y < yearsToRetirement; y++) {
+    projectedValue = (projectedValue + annualContribution) * (1 + growthRate);
+  }
+
+  var expectedHtml = [
+    '<div class="mixrow">',
+    '<div class="mbox con"><div class="mlbl">Suggested risk profile</div><div class="mval">'+mapping.risk+'</div></div>',
+    '<div class="mbox bal"><div class="mlbl">Likely lifestyle outcome</div><div class="mval">'+mapping.likely+'</div></div>',
+    '</div>',
+    '<div class="iitem"><strong>Expected path:</strong> At your age, the broad industry guidance suggests a '+mapping.risk+' strategy, with a target retirement savings range of <strong>'+formatSavingsRange(mapping.requiredSingle, mapping.requiredCouple)+'</strong> today for a single or couple plan.</div>',
+    '<div class="iitem"><strong>Retirement lifestyle:</strong> Your selected '+lifestyle+' lifestyle means the plan should aim for <strong>'+getLifestyleNarrative(lifestyle)+'</strong>.</div>'
+  ].join('');
+
+  var actualHtml = [
+    '<div class="mixrow">',
+    '<div class="mbox con"><div class="mlbl">Current portfolio</div><div class="mval">'+money(currentValue)+'</div></div>',
+    '<div class="mbox bal"><div class="mlbl">Projected at 67</div><div class="mval">'+money(projectedValue)+'</div></div>',
+    '</div>',
+    '<div class="iitem"><strong>Actual path:</strong> Based on your current investments of <strong>'+money(currentValue)+'</strong>, annual income of <strong>'+money(annualIncome)+'</strong>, and an assumed <strong>'+pct(contributionRate*100)+'</strong> annual contribution rate, the simple projection indicates an estimated <strong>'+money(projectedValue)+'</strong> by age 67.</div>',
+    '<div class="iitem"><strong>Target benchmark:</strong> Your current age and selected lifestyle point to a target range of <strong>'+formatSavingsRange(mapping.requiredSingle, mapping.requiredCouple)+'</strong> today, so your actual path is <strong>'+(projectedValue >= (mapping.requiredSingle && mapping.requiredSingle[1] || 0) ? 'tracking well' : 'below the benchmark')+'</strong>.</div>'
+  ].join('');
+
+  document.getElementById('retirementExpectedPath').innerHTML = expectedHtml;
+  document.getElementById('retirementActualPath').innerHTML = actualHtml;
+}
+
+function formatSavingsRange(singleRange, coupleRange) {
+  if(singleRange && singleRange[0] != null && singleRange[1] != null){
+    return money(singleRange[0])+'–'+money(singleRange[1])+' (single) / '+money(coupleRange[0])+'–'+money(coupleRange[1])+' (couple)';
+  }
+  return 'Lifestyle depends on final balance';
+}
+
+function getLifestyleNarrative(lifestyle) {
+  var map = {Basic:'a leaner retirement with a strong reliance on the Age Pension', Modest:'a modest retirement with some flexibility', Comfortable:'a comfortable retirement with travel and regular discretionary spending', Luxury:'a high-standard retirement with premium travel and strong lifestyle flexibility'};
+  return map[lifestyle] || 'a balanced retirement lifestyle';
+}
+
 function doExport(){
   var blob=new Blob([JSON.stringify(ST,null,2)],{type:'application/json'});
   var a=document.createElement('a');
@@ -1363,17 +1580,20 @@ function doImport(event){
 }
 
 // ── INIT ──────────────────────────────────────────────────────
-window.addEventListener('beforeunload', function(){
-  clearStoredState();
-});
+window.addEventListener('beforeunload', persist);
+window.addEventListener('pageshow', function(){ persist(); });
 
-window.addEventListener('pageshow', function(event){
-  if (event.persisted) {
-    clearStoredState();
-  }
-});
+var initialState = (function(){
+  try {
+    var r = JSON.parse(localStorage.getItem(SK));
+    if (r && typeof r === 'object') {
+      return r;
+    }
+  } catch(e) {}
+  return null;
+})();
+if(initialState){ ST = initialState; }
 
-clearStoredState();
 renderHomeStats();
 renderInvList();
 renderIncList();
