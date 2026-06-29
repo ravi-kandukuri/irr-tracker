@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>WealthPath | Portfolio Dashboard</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style type="text/css">@font-face {font-family:Inter;font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.2.8/cyrillic/wght/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.2.8/latin-ext/wght/normal.woff2);unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.2.8/greek/wght/normal.woff2);unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.2.8/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.2.8/cyrillic-ext/wght/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C8A,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.2.8/greek-ext/wght/normal.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.2.8/vietnamese/wght/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:500;src:url(/cf-fonts/v/inter/5.2.8/cyrillic/wght/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:500;src:url(/cf-fonts/v/inter/5.2.8/greek-ext/wght/normal.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:500;src:url(/cf-fonts/v/inter/5.2.8/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:500;src:url(/cf-fonts/v/inter/5.2.8/cyrillic-ext/wght/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C8A,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:500;src:url(/cf-fonts/v/inter/5.2.8/greek/wght/normal.woff2);unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:500;src:url(/cf-fonts/v/inter/5.2.8/latin-ext/wght/normal.woff2);unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:500;src:url(/cf-fonts/v/inter/5.2.8/vietnamese/wght/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:600;src:url(/cf-fonts/v/inter/5.2.8/vietnamese/wght/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:600;src:url(/cf-fonts/v/inter/5.2.8/cyrillic/wght/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:600;src:url(/cf-fonts/v/inter/5.2.8/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:600;src:url(/cf-fonts/v/inter/5.2.8/greek-ext/wght/normal.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:600;src:url(/cf-fonts/v/inter/5.2.8/latin-ext/wght/normal.woff2);unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:600;src:url(/cf-fonts/v/inter/5.2.8/greek/wght/normal.woff2);unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:600;src:url(/cf-fonts/v/inter/5.2.8/cyrillic-ext/wght/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C8A,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:700;src:url(/cf-fonts/v/inter/5.2.8/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:700;src:url(/cf-fonts/v/inter/5.2.8/greek/wght/normal.woff2);unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:700;src:url(/cf-fonts/v/inter/5.2.8/latin-ext/wght/normal.woff2);unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:700;src:url(/cf-fonts/v/inter/5.2.8/vietnamese/wght/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:700;src:url(/cf-fonts/v/inter/5.2.8/cyrillic/wght/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:700;src:url(/cf-fonts/v/inter/5.2.8/cyrillic-ext/wght/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C8A,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:700;src:url(/cf-fonts/v/inter/5.2.8/greek-ext/wght/normal.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:800;src:url(/cf-fonts/v/inter/5.2.8/greek-ext/wght/normal.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:800;src:url(/cf-fonts/v/inter/5.2.8/cyrillic/wght/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:800;src:url(/cf-fonts/v/inter/5.2.8/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:800;src:url(/cf-fonts/v/inter/5.2.8/vietnamese/wght/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:800;src:url(/cf-fonts/v/inter/5.2.8/greek/wght/normal.woff2);unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:800;src:url(/cf-fonts/v/inter/5.2.8/latin-ext/wght/normal.woff2);unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:800;src:url(/cf-fonts/v/inter/5.2.8/cyrillic-ext/wght/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C8A,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}</style>
 <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.54.0/dist/apexcharts.min.js"></script>
 <style>
 /* ── RESET ── */
@@ -111,6 +111,8 @@ p{color:var(--muted);line-height:1.65}
 .tcol{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 /* chart grid */
 .cgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+/* 3-col grid */
+.cgrid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;margin-top:18px}
 /* ── CARDS ── */
 .card{
   background:var(--panel);
@@ -213,9 +215,17 @@ p{color:var(--muted);line-height:1.65}
 .confirm-modal-card{width:min(92vw,440px);background:var(--panel);border:1px solid var(--border);border-radius:var(--r);padding:22px 22px 18px;box-shadow:var(--shadow)}
 .confirm-modal-card h3{margin-bottom:8px;font-size:1.05rem}
 .confirm-modal-card p{margin-top:8px}
+/* toggle switch */
+.switch {position: relative; display: inline-block; width: 44px; height: 24px;}
+.switch input {opacity: 0; width: 0; height: 0;}
+.slider {position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(255,255,255,0.1); transition: .4s; border-radius: 24px; border: 1px solid var(--border2);}
+.slider:before {position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px; background-color: var(--text); transition: .4s; border-radius: 50%;}
+input:checked + .slider {background-color: var(--accent); border-color: var(--accent);}
+input:checked + .slider:before {transform: translateX(20px);}
+
 /* responsive */
 @media(max-width:1100px){
-  .hero,.tcol,.cgrid{grid-template-columns:1fr}
+  .hero,.tcol,.cgrid,.cgrid3{grid-template-columns:1fr}
   .srow{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:768px){
@@ -240,7 +250,6 @@ p{color:var(--muted);line-height:1.65}
 
 <div class="shell">
 
-  <!-- SIDEBAR -->
   <aside class="sidebar" id="sidebar">
     <div class="brand">
       <div class="brand-icon">W</div>
@@ -253,6 +262,8 @@ p{color:var(--muted);line-height:1.65}
       <button class="nbtn on" onclick="showPage('home')"><span class="nicon">⬡</span>Overview</button>
       <button class="nbtn"    onclick="showPage('investments')"><span class="nicon">▲</span>Investments</button>
       <button class="nbtn"    onclick="showPage('income')"><span class="nicon">●</span>Income</button>
+      <button class="nbtn"    onclick="showPage('expenses')"><span class="nicon">■</span>Expenses</button>
+      <button class="nbtn"    onclick="showPage('superannuation')"><span class="nicon">☂</span>Superannuation</button>
       <button class="nbtn"    onclick="showPage('projection')"><span class="nicon">◌</span>Projection</button>
       <button class="nbtn"    onclick="showPage('summary')"><span class="nicon">◎</span>Summary</button>
       <button class="nbtn"    onclick="showPage('retirement')"><span class="nicon">◍</span>Retirement pathway</button>
@@ -264,17 +275,14 @@ p{color:var(--muted);line-height:1.65}
     </div>
   </aside>
 
-  <!-- MOBILE BAR -->
   <div class="mbar">
     <div class="brand-icon sm">W</div>
     <span class="mbar-title">WealthPath</span>
     <button class="hbtn" onclick="toggleSidebar()">☰</button>
   </div>
 
-  <!-- MAIN -->
   <main class="main">
 
-    <!-- PAGE: HOME -->
     <section class="pg on" id="pg-home">
       <div class="phead">
         <div><span class="eyebrow">Personal finance workspace</span><h2>Overview</h2></div>
@@ -303,7 +311,6 @@ p{color:var(--muted);line-height:1.65}
       </div>
     </section>
 
-    <!-- PAGE: INVESTMENTS -->
     <section class="pg" id="pg-investments">
       <div class="phead">
         <div><span class="eyebrow">Portfolio builder</span><h2>Investments</h2></div>
@@ -313,11 +320,12 @@ p{color:var(--muted);line-height:1.65}
         <div class="card">
           <span class="eyebrow">Form</span>
           <h3 id="invTitle">Add investment</h3>
+          <p class="note mt8">Fields marked with an asterisk (*) are required to calculate the Internal Rate of Return (IRR).</p>
           <div class="fstack mt12">
             <div class="fgrid">
-              <div class="field"><span>Name</span><input id="invName" type="text" placeholder="e.g. Brisbane Home"></div>
+              <div class="field"><span>Name *</span><input id="invName" type="text" placeholder="e.g. Brisbane Home"></div>
               <div class="field">
-                <span>Type</span>
+                <span>Type *</span>
                 <select id="invType" onchange="renderInvFields()">
                   <option value="">Select type…</option>
                   <option value="property">🏠 Property</option>
@@ -349,7 +357,6 @@ p{color:var(--muted);line-height:1.65}
       </div>
     </section>
 
-    <!-- PAGE: INCOME -->
     <section class="pg" id="pg-income">
       <div class="phead">
         <div><span class="eyebrow">Cash inflows</span><h2>Income</h2></div>
@@ -393,11 +400,91 @@ p{color:var(--muted);line-height:1.65}
       </div>
       <div class="brow mt16">
         <button class="btn bo" onclick="prevToInvestments()">← Back</button>
-        <button class="btn bp" onclick="gotoProjectionFromIncome()">Next: Projection</button>
+        <button class="btn bp" onclick="gotoNextFrom('income')">Next: Expenses</button>
       </div>
     </section>
 
-    <!-- PAGE: CURRENT ALLOCATION FUTURE PROJECTION -->
+    <section class="pg" id="pg-expenses">
+      <div class="phead">
+        <div><span class="eyebrow">Cash outflows</span><h2>Expenses</h2></div>
+        <button class="btn bp" onclick="newExp()">+ Add expense</button>
+      </div>
+      <div class="tcol">
+        <div class="card">
+          <span class="eyebrow">Form</span>
+          <h3 id="expTitle">Add living expense</h3>
+          <p class="note mt8">Add your custom household and lifestyle expenses here.</p>
+          <div class="fstack mt12">
+            <div class="fgrid">
+              <div class="field"><span>Expense name</span><input id="expName" type="text" placeholder="e.g. Groceries, Coles"></div>
+              <div class="field"><span>Amount (AUD)</span><input id="expAmt" type="number" min="0" step="0.01" placeholder="e.g. 500"></div>
+              <div class="field">
+                <span>Frequency</span>
+                <select id="expFreq">
+                  <option value="weekly">Weekly</option>
+                  <option value="fortnightly">Fortnightly</option>
+                  <option value="monthly">Monthly</option>
+                  <option value="annual">Annual (per year)</option>
+                </select>
+              </div>
+            </div>
+            <div class="brow">
+              <button class="btn bo" onclick="cancelExp()">Cancel</button>
+              <button class="btn bp" onclick="saveExp()">Save expense</button>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <span class="eyebrow">Outgoings</span>
+          <h3>Saved expenses</h3>
+          <div class="ilist mt12" id="expList"></div>
+        </div>
+      </div>
+      <div class="brow mt16">
+        <button class="btn bo" onclick="showPage('income')">← Back to Income</button>
+        <button class="btn bp" onclick="gotoNextFrom('expenses')">Next: Superannuation</button>
+      </div>
+    </section>
+
+    <section class="pg" id="pg-superannuation">
+      <div class="phead">
+        <div><span class="eyebrow">Retirement vehicles</span><h2>Superannuation</h2></div>
+      </div>
+      <div class="card">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <h3 style="margin-bottom:0">Track Superannuation?</h3>
+            <span class="eyebrow" style="margin-top:4px">Include your super balance in retirement projections</span>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="superToggle" onchange="toggleSuper()">
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div id="superForm" class="fstack mt16" style="display:none; padding-top:16px; border-top:1px solid var(--border)">
+          <div class="fgrid">
+            <div class="field">
+              <span>Account Type</span>
+              <select id="superType" onchange="renderSuperFields()">
+                <option value="standard">Standard (Retail/Industry Fund)</option>
+                <option value="smsf">Self-Managed Super Fund (SMSF)</option>
+              </select>
+            </div>
+            <div class="field"><span>Current Balance (AUD)</span><input id="superBalance" type="number" placeholder="e.g. 150000" oninput="saveSuper()"></div>
+            <div class="field"><span>Annual Contributions (AUD)</span><input id="superContrib" type="number" placeholder="Employer + Personal (e.g. 15000)" oninput="saveSuper()"></div>
+          </div>
+          <div id="smsfFields" class="fgrid mt12" style="display:none;">
+            <div class="field"><span>SMSF Property Value (AUD)</span><input id="superSmsfProp" type="number" placeholder="e.g. 780000" oninput="saveSuper()"></div>
+            <div class="field"><span>SMSF Loan Balance (AUD)</span><input id="superSmsfLoan" type="number" placeholder="e.g. 400000" oninput="saveSuper()"></div>
+          </div>
+        </div>
+      </div>
+      <div class="brow mt16">
+        <button class="btn bo" onclick="showPage('expenses')">← Back to Expenses</button>
+        <button class="btn bp" onclick="showPage('projection')">Next: Projection</button>
+      </div>
+    </section>
+
     <section class="pg" id="pg-projection">
       <div class="phead">
         <div><span class="eyebrow">Performance check</span><h2>Current Allocation Future Projection</h2></div>
@@ -414,12 +501,11 @@ p{color:var(--muted);line-height:1.65}
         <div id="projectionInsights" class="iblock"></div>
       </div>
       <div class="brow mt16">
-        <button class="btn bo" onclick="prevToIncome()">← Back</button>
+        <button class="btn bo" onclick="showPage('superannuation')">← Back</button>
         <button class="btn bp" onclick="gotoSummaryFromProjection()">Next: Summary</button>
       </div>
     </section>
 
-    <!-- PAGE: SUMMARY -->
     <section class="pg" id="pg-summary">
       <div class="phead">
         <div><span class="eyebrow">Portfolio intelligence</span><h2>Summary &amp; Insights</h2></div>
@@ -449,7 +535,7 @@ p{color:var(--muted);line-height:1.65}
           <div class="card"><p class="clbl">Asset value by category</p><div id="chAssets"></div></div>
         </div>
         <div class="cgrid">
-          <div class="card"><p class="clbl">Annual income vs outflows</p><div id="chCash"></div></div>
+          <div class="card"><p class="clbl">Annual Income vs Outflows (Incl. Living Exp)</p><div id="chCash"></div></div>
           <div class="card"><p class="clbl">IRR per investment (%)</p><div id="chIrr"></div></div>
         </div>
         <div class="card mt16">
@@ -467,7 +553,7 @@ p{color:var(--muted);line-height:1.65}
         <div class="card mt16" id="summaryInsightsCardDesired"></div>
       </div>
       <div class="brow mt16">
-        <button class="btn bo" onclick="prevToIncome()">← Back to Income</button>
+        <button class="btn bo" onclick="showPage('projection')">← Back to Projection</button>
         <button class="btn bp" onclick="gotoRetirementFromSummary()">Next: Retirement pathway</button>
       </div>
       <div class="disclaimer mt16">
@@ -475,12 +561,23 @@ p{color:var(--muted);line-height:1.65}
       </div>
     </section>
 
-    <!-- PAGE: RETIREMENT PATHWAY -->
     <section class="pg" id="pg-retirement">
       <div class="phead">
         <div><span class="eyebrow">Retirement planning</span><h2>Retirement pathway</h2></div>
       </div>
+      
       <div class="card">
+        <span class="eyebrow">Visual Projections</span>
+        <h3>Your Wealth vs Industry Average</h3>
+        <p class="note mt8">Visualizing your expected trajectory against standard industry milestones for your chosen lifestyle.</p>
+        <div class="cgrid3" id="retirementCharts">
+           <div class="card" style="background:var(--panel2); padding:16px"><p class="clbl" style="margin-bottom:8px" id="lblRetCurrent">Current</p><div id="chRetCurrent"></div></div>
+           <div class="card" style="background:var(--panel2); padding:16px"><p class="clbl" style="margin-bottom:8px" id="lblRetPlanned">Planned</p><div id="chRetPlanned"></div></div>
+           <div class="card" style="background:var(--panel2); padding:16px"><p class="clbl" style="margin-bottom:8px" id="lblRet67">Age 67</p><div id="chRet67"></div></div>
+        </div>
+      </div>
+
+      <div class="card mt16">
         <span class="eyebrow">Expected path</span>
         <h3>What your age and lifestyle suggest</h3>
         <div id="retirementExpectedPath" class="mt12"></div>
@@ -495,7 +592,7 @@ p{color:var(--muted);line-height:1.65}
         <button class="btn bp" onclick="doExport()">⬇ Export JSON</button>
       </div>
       <div class="brow mt16">
-        <button class="btn bo" onclick="prevToSummary()">← Back to Summary</button>
+        <button class="btn bo" onclick="showPage('summary')">← Back to Summary</button>
         <button class="btn bp" onclick="startFreshFromRetirement()">Home</button>
       </div>
     </section>
@@ -521,31 +618,51 @@ p{color:var(--muted);line-height:1.65}
    ApexCharts CDN. Works from file:// and GitHub Pages.
    =========================================================== */
 
+
+/* ===========================================================
+   WEALTHPATH — fully self-contained, zero dependencies beyond
+   ApexCharts CDN. Works from file:// and GitHub Pages.
+   =========================================================== */
+
 // ── STATE ────────────────────────────────────────────────────
 var SK = 'wealthpath-v5';
 var ST = (function(){
   try {
     var r = JSON.parse(localStorage.getItem(SK));
     if (r && typeof r === 'object') {
-      r.profile     = r.profile     || {name:'',age:'',lifestyle:'Comfortable',targetType:'Balanced'};
+      r.profile     = r.profile     || {name:'',age:'',retireAge:67,lifestyle:'Comfortable',targetType:'Balanced'};
       r.profile.targetType = r.profile.targetType || 'Balanced';
       r.profile.lifestyle = r.profile.lifestyle || 'Comfortable';
+      r.profile.retireAge = r.profile.retireAge || 67;
       r.investments = Array.isArray(r.investments) ? r.investments : [];
       r.income      = Array.isArray(r.income)      ? r.income      : [];
+      r.expenses    = Array.isArray(r.expenses)    ? r.expenses    : [];
+      r.super       = r.super       || {enabled:false, type:'standard', balance:'', contrib:'', smsfProp:'', smsfLoan:''};
       r.meta       = r.meta       || {importedFromJson:false,investPopupShown:false,incomePopupShown:false};
       return r;
     }
   } catch(e) {}
-  return {profile:{name:'',age:'',lifestyle:'Comfortable',targetType:'Balanced'},investments:[],income:[],meta:{importedFromJson:false,investPopupShown:false,incomePopupShown:false}};
+  return {profile:{name:'',age:'',retireAge:67,lifestyle:'Comfortable',targetType:'Balanced'},investments:[],income:[],expenses:[],super:{enabled:false, type:'standard', balance:'', contrib:'', smsfProp:'', smsfLoan:''},meta:{importedFromJson:false,investPopupShown:false,incomePopupShown:false}};
 })();
 
 function persist() {
   try { localStorage.setItem(SK, JSON.stringify(ST)); } catch(e) {}
 }
 
+var _charts = {};
+var COLS = ['#6c63ff','#22d3a3','#fbbf24','#4f8cff','#38bdf8','#a855f7','#f97316','#f87171'];
+var DB = {
+  chart: { toolbar: { show: false }, background: 'transparent', animations: { enabled: true }, zoom: { enabled: false } },
+  theme: { mode: 'dark' },
+  grid: { show: false },
+  legend: { show: true, position: 'bottom', labels: { colors: '#cbd5e1' } },
+  dataLabels: { enabled: false },
+  tooltip: { theme: 'dark' }
+};
+
 function clearStoredState() {
   try { localStorage.removeItem(SK); } catch(e) {}
-  ST = {profile:{name:'',age:'',lifestyle:'Comfortable',targetType:'Balanced'},investments:[],income:[],meta:{importedFromJson:false,investPopupShown:false,incomePopupShown:false}};
+  ST = {profile:{name:'',age:'',retireAge:67,lifestyle:'Comfortable',targetType:'Balanced'},investments:[],income:[],expenses:[],super:{enabled:false, type:'standard', balance:'', contrib:'', smsfProp:'', smsfLoan:''},meta:{importedFromJson:false,investPopupShown:false,incomePopupShown:false}};
 }
 
 function normalizeRiskProfile(value) {
@@ -583,15 +700,6 @@ function getSuggestedRiskProfile(age, lifestyle) {
   return 'Conservative';
 }
 
-function applySuggestedRiskProfile() {
-  var suggested = getSuggestedRiskProfile(ST.profile.age, ST.profile.lifestyle);
-  ST.profile.targetType = normalizeRiskProfile(suggested);
-  var select = document.getElementById('targetPortfolioType');
-  if (select) select.value = ST.profile.targetType;
-  persist();
-  return ST.profile.targetType;
-}
-
 function saveTargetPortfolioType() {
   ST.profile.targetType = getPreferredPortfolioType();
   persist();
@@ -605,15 +713,19 @@ function resetAppState() {
   clearStoredState();
   var nameEl = document.getElementById('pName');
   var ageEl = document.getElementById('pAge');
+  var retireEl = document.getElementById('pRetireAge');
   var lifestyleEl = document.getElementById('pLifestyle');
   if (nameEl) nameEl.value = '';
   if (ageEl) ageEl.value = '';
+  if (retireEl) retireEl.value = '67';
   if (lifestyleEl) lifestyleEl.value = 'Comfortable';
   var select = document.getElementById('targetPortfolioType');
   if (select) select.value = 'Balanced';
   renderHomeStats();
   renderInvList();
   renderIncList();
+  renderExpList();
+  renderSuperFields();
   renderNavButtons();
 }
 
@@ -636,40 +748,49 @@ function trackInvestments() {
   showPage('investments');
 }
 
+function validateInvestmentsIRR() {
+  var invalid = ST.investments.find(function(iv){
+    if(iv.type === 'cash') return false;
+    var irr = getIRR(iv);
+    return irr == null || isNaN(irr) || irr === 0;
+  });
+  if(invalid) {
+    alert("Warning: Investment '" + invalid.name + "' has an IRR of 0 or N/A. Please edit the investment and ensure all mandatory fields (*) like Cost Basis, Current Value, and Holding Period are filled out accurately.");
+    return false;
+  }
+  return true;
+}
+
 function gotoIncomeFromInvestments() {
   if(!ST.investments.length){
-    alert('Please add at least one investment before proceeding to Income.');
+    alert('Please add at least one investment before proceeding.');
     return;
   }
+  if(!validateInvestmentsIRR()) return; 
+  
   if(!ST.meta.investPopupShown){
-    ST.meta.investPopupShown = true;
-    persist();
     showConfirmDialog('Have you finished entering all your investments? If not, you can return at any time to add more information.', function(ok){
-      if(ok) showPage('income');
+      if(ok) {
+        ST.meta.investPopupShown = true;
+        persist();
+        showPage('income');
+      }
     });
     return;
   }
   showPage('income');
 }
 
-function gotoSummaryFromIncome() {
-  if(!ST.income.length){
-    alert('Please add at least one income source before proceeding to Summary.');
-    return;
+function gotoNextFrom(page) {
+  if(page === 'income'){
+    if(!ST.income.length){
+      alert('Please add at least one income source before proceeding.');
+      return;
+    }
+    showPage('expenses');
+  } else if (page === 'expenses') {
+    showPage('superannuation');
   }
-  if(!ST.meta.incomePopupShown){
-    ST.meta.incomePopupShown = true;
-    persist();
-    showConfirmDialog('Have you finished entering all your income details? If not, you can return at any time to add more information.', function(ok){
-      if(ok) showPage('summary');
-    });
-    return;
-  }
-  showPage('summary');
-}
-
-function gotoProjectionFromIncome() {
-  showPage('projection');
 }
 
 function gotoSummaryFromProjection() {
@@ -684,19 +805,13 @@ function prevToInvestments() {
   showPage('investments');
 }
 
-function prevToIncome() {
-  showPage('income');
-}
-
-function prevToSummary() {
-  showPage('summary');
-}
-
 function startFreshFromRetirement() {
   clearStoredState();
   renderHomeStats();
   renderInvList();
   renderIncList();
+  renderExpList();
+  renderSuperFields();
   renderNavButtons();
   selectHomeMode('new');
   hydrateProfileFields();
@@ -717,6 +832,7 @@ function switchSummaryTab(tab) {
 }
 
 // ── UTILS ────────────────────────────────────────────────────
+
 function uid() { return Math.random().toString(36).slice(2,9)+Date.now().toString(36); }
 
 function money(n) {
@@ -760,7 +876,6 @@ function xirr(flows) {
   return isFinite(r)?r:null;
 }
 
-// ── CALCULATIONS ─────────────────────────────────────────────
 function invValue(iv) {
   switch(iv.type){
     case 'cash':       return Number(iv.cash)||0;
@@ -774,14 +889,12 @@ function invValue(iv) {
     default: return 0;
   }
 }
-
 function calcPropertyAnnualExpenses(iv){
   var monthly = (Number(iv.monthlyInsurance)||0) + (Number(iv.monthlyPest)||0) + (Number(iv.monthlyAgentFees)||0) + (Number(iv.monthlyOtherExpenses)||0);
   var quarterly = (Number(iv.quarterlyRates)||0) + (Number(iv.quarterlyWater)||0) + (Number(iv.quarterlyStrata)||0);
   var annual = Number(iv.annualExpenses)||0;
   return monthly*12 + quarterly*4 + annual;
 }
-
 function buildFlows(iv) {
   if(iv.type==='cash') return [];
   if(iv.type==='property'){
@@ -845,22 +958,18 @@ function buildFlows(iv) {
   }
   return [];
 }
-
 function getIRR(iv) {
   var r=xirr(buildFlows(iv));
   return r==null?null:r*100;
 }
-
 function allocs() {
   var t={property:0,shares:0,crypto:0,gold:0,goldbonds:0,bonds:0,termdeposit:0,cash:0};
   ST.investments.forEach(function(iv){ if(t[iv.type]!=null) t[iv.type]+=invValue(iv); });
   return t;
 }
-
 function totalPf() {
   var t=allocs(); return Object.keys(t).reduce(function(s,k){return s+t[k];},0);
 }
-
 function totalIncome() {
   return ST.income.reduce(function(s,ic){
     var a=Number(ic.amount)||0;
@@ -869,12 +978,21 @@ function totalIncome() {
     return s+a;
   },0);
 }
-
+function totalLivingExpenses() {
+  if(!ST.expenses) return 0;
+  return ST.expenses.reduce(function(s, ex){
+    var a=Number(ex.amount)||0;
+    if(ex.freq==='annual') return s+a;
+    if(ex.freq==='monthly') return s+a*12;
+    if(ex.freq==='fortnightly') return s+a*26;
+    if(ex.freq==='weekly') return s+a*52;
+    return s+a;
+  },0);
+}
 function avgIRR() {
   var vs=ST.investments.map(getIRR).filter(function(v){return v!=null&&isFinite(v);});
   return vs.length?vs.reduce(function(a,b){return a+b;},0)/vs.length:0;
 }
-
 function classify(t) {
   var tot=totalPf()||1;
   var g=(t.shares+t.crypto+t.property)/tot*100;
@@ -882,7 +1000,6 @@ function classify(t) {
   if(g>=40) return 'Balanced';
   return 'Conservative';
 }
-
 function recAlloc(age, targetType) {
   var a=Number(age)||30;
   var baseGrowth=Math.max(20,Math.min(80,100-a));
@@ -907,24 +1024,20 @@ function recAlloc(age, targetType) {
   result.Cash += diff;
   return result;
 }
-
-function classifyRec(age, targetType) {
-  return normalizeRiskProfile(targetType||'Balanced');
-}
-
 function getExpectedProjectionRate(profileType) {
-  var base=Math.min(0.25,Math.max(0.04,(avgIRR()||8)/100));
-  var type=normalizeRiskProfile(profileType||'Balanced');
-  if(type==='Conservative') return Math.max(0.04, base*0.9);
-  if(type==='Growth') return Math.min(0.25, base*1.1);
-  if(type==='High Growth') return Math.min(0.25, base*1.2);
-  return base;
+  var type = normalizeRiskProfile(profileType || 'Balanced');
+  if (type === 'Conservative') return 0.04;
+  if (type === 'Stable') return 0.05;
+  if (type === 'Moderate Growth') return 0.06;
+  if (type === 'Balanced') return 0.07;
+  if (type === 'Growth') return 0.08;
+  if (type === 'High Growth') return 0.09;
+  return 0.07;
 }
-
 function projection(rate) {
   var bal=totalPf(),annual=totalIncome()*0.25;
   var r=Number(rate);
-  if(!isFinite(r)) r=Math.min(0.25,Math.max(0.04,(avgIRR()||8)/100));
+  if(!isFinite(r)) r = 0.07;
   var lbs=[],vs=[];
   for(var y=0;y<=10;y++){
     lbs.push(y===0?'Now':'Yr '+y);
@@ -933,18 +1046,128 @@ function projection(rate) {
   }
   return {lbs:lbs,vs:vs};
 }
-
 function totalOutflow() {
-  return ST.investments.reduce(function(s,iv){
+  var invOut = ST.investments.reduce(function(s,iv){
     if(iv.type==='property'){
       var e=Number(iv.loanEmi)||emi(iv.loanAmount,iv.loanRate,iv.loanTenure);
       return s + e*12 + calcPropertyAnnualExpenses(iv);
     }
     return s;
   },0);
+  return invOut + totalLivingExpenses();
 }
 
-// ── PAGE ROUTING ─────────────────────────────────────────────
+function normalizeRiskProfile(value) {
+  var v = (value || 'Balanced').toString().trim();
+  if (v === 'Aggressive' || v === 'High Growth') return 'High Growth';
+  if (v === 'Moderate Growth') return 'Moderate Growth';
+  if (v === 'Stable') return 'Stable';
+  if (v === 'Conservative' || v === 'Balanced' || v === 'Growth' || v === 'High Growth') return v;
+  return 'Balanced';
+}
+function getPreferredPortfolioType() {
+  var select = document.getElementById('targetPortfolioType');
+  var value = select ? select.value : null;
+  if (value && value !== 'Balanced') {
+    return normalizeRiskProfile(value);
+  }
+  return normalizeRiskProfile(ST.profile.targetType || 'Balanced');
+}
+function getLifestyleValue() {
+  var el = document.getElementById('pLifestyle');
+  var value = el ? el.value : (ST.profile.lifestyle || 'Comfortable');
+  return value || 'Comfortable';
+}
+function getSuggestedRiskProfile(age, lifestyle) {
+  var ageValue = Number(age)||30;
+  var lifestyleValue = (lifestyle || 'Comfortable').toString().trim();
+  if (ageValue < 30) return 'High Growth';
+  if (ageValue < 40) return lifestyleValue === 'Luxury' ? 'High Growth' : 'Growth';
+  if (ageValue < 50) return lifestyleValue === 'Luxury' ? 'Growth' : 'Balanced';
+  if (ageValue < 60) return lifestyleValue === 'Luxury' ? 'Balanced' : 'Moderate Growth';
+  if (ageValue < 70) return lifestyleValue === 'Luxury' ? 'Moderate Growth' : 'Stable';
+  return 'Conservative';
+}
+function saveTargetPortfolioType() {
+  ST.profile.targetType = getPreferredPortfolioType();
+  persist();
+  renderHomeStats();
+  if (document.getElementById('pg-summary').classList.contains('on')) {
+    renderSummary();
+  }
+}
+function resetAppState() {
+  clearStoredState();
+  var nameEl = document.getElementById('pName');
+  var ageEl = document.getElementById('pAge');
+  var retireEl = document.getElementById('pRetireAge');
+  var lifestyleEl = document.getElementById('pLifestyle');
+  if (nameEl) nameEl.value = '';
+  if (ageEl) ageEl.value = '';
+  if (retireEl) retireEl.value = '67';
+  if (lifestyleEl) lifestyleEl.value = 'Comfortable';
+  var select = document.getElementById('targetPortfolioType');
+  if (select) select.value = 'Balanced';
+  renderHomeStats();
+  renderInvList();
+  renderIncList();
+  renderExpList();
+  renderSuperFields();
+  renderNavButtons();
+}
+function renderNavButtons() {
+  var enabled = !!ST.meta.importedFromJson;
+  document.querySelectorAll('.nav .nbtn').forEach(function(btn){
+    var text = btn.textContent.trim();
+    if(text==='Overview') return;
+    btn.style.display = enabled ? 'flex' : 'none';
+  });
+  var note = document.getElementById('homeUnlockNote');
+  if(note) note.style.display = enabled ? 'none' : 'block';
+}
+function gotoNextFrom(page) {
+  if(page === 'income'){
+    if(!ST.income.length){
+      alert('Please add at least one income source before proceeding.');
+      return;
+    }
+    showPage('expenses');
+  } else if (page === 'expenses') {
+    showPage('superannuation');
+  }
+}
+function gotoSummaryFromProjection() {
+  showPage('summary');
+}
+function gotoRetirementFromSummary() {
+  showPage('retirement');
+}
+function prevToInvestments() {
+  showPage('investments');
+}
+function startFreshFromRetirement() {
+  clearStoredState();
+  renderHomeStats();
+  renderInvList();
+  renderIncList();
+  renderExpList();
+  renderSuperFields();
+  renderNavButtons();
+  selectHomeMode('new');
+  hydrateProfileFields();
+  showPage('home');
+}
+function switchSummaryTab(tab) {
+  _summaryActiveTab = tab;
+  document.querySelectorAll('.summary-tab').forEach(function(el){el.classList.remove('on');});
+  document.querySelectorAll('.tab-btn').forEach(function(btn){btn.classList.remove('on');});
+  var target = document.getElementById('tab-'+tab);
+  if(target) target.classList.add('on');
+  var btn = document.getElementById('tab-btn-'+tab);
+  if(btn) btn.classList.add('on');
+  renderSummaryInsights(tab);
+}
+
 function showPage(name) {
   var activePage = document.querySelector('.pg.on');
   if (name === 'home' && activePage && activePage.id === 'pg-summary') {
@@ -958,37 +1181,38 @@ function showPage(name) {
     if(b.getAttribute('onclick')==="showPage('"+name+"')") b.classList.add('on');
   });
   if(name==='summary') renderSummary();
+  if(name==='superannuation') renderSuperFields();
   if(name==='projection') renderProjectionPage();
   if(name==='retirement') renderRetirementPage();
   if(name==='home') renderHomeStats();
   document.getElementById('sidebar').classList.remove('open');
   document.getElementById('ov').classList.remove('show');
 }
-
 function toggleSidebar() {
   document.getElementById('sidebar').classList.toggle('open');
   document.getElementById('ov').classList.toggle('show');
 }
 document.getElementById('ov').addEventListener('click', toggleSidebar);
 
-// ── PROFILE ──────────────────────────────────────────────────
 function hydrateProfileFields() {
   var nameEl = document.getElementById('pName');
   var ageEl = document.getElementById('pAge');
+  var retireEl = document.getElementById('pRetireAge');
   var lifestyleEl = document.getElementById('pLifestyle');
   if(nameEl) nameEl.value = ST.profile.name||'';
   if(ageEl) ageEl.value = ST.profile.age||'';
+  if(retireEl) retireEl.value = ST.profile.retireAge || 67;
   if(lifestyleEl) lifestyleEl.value = ST.profile.lifestyle || 'Comfortable';
 }
-
 hydrateProfileFields();
-
 function saveProfile() {
   var nameEl = document.getElementById('pName');
   var ageEl = document.getElementById('pAge');
+  var retireEl = document.getElementById('pRetireAge');
   var lifestyleEl = document.getElementById('pLifestyle');
   if(nameEl) ST.profile.name = nameEl.value;
   if(ageEl) ST.profile.age = ageEl.value;
+  if(retireEl) ST.profile.retireAge = retireEl.value;
   if(lifestyleEl) ST.profile.lifestyle = lifestyleEl.value || 'Comfortable';
   if(!ST.profile.targetType || ST.profile.targetType === 'Balanced') {
     ST.profile.targetType = getSuggestedRiskProfile(ST.profile.age, ST.profile.lifestyle);
@@ -996,7 +1220,6 @@ function saveProfile() {
   persist();
   renderHomeStats();
 }
-
 function selectHomeMode(mode) {
   var panel=document.getElementById('homeModePanel');
   if(!panel) return;
@@ -1008,19 +1231,17 @@ function selectHomeMode(mode) {
   if(mode==='existing'){
     panel.innerHTML = '<div class="home-mode-card"><span class="eyebrow">Resume</span><h3>Import your saved file</h3><p class="note mt8">Upload a previously exported JSON file to continue editing your investment and income details.</p><label class="btn bp mt8" style="cursor:pointer;width:max-content">⬆ Import JSON<input type="file" id="importFileHome" accept=".json" style="display:none" onchange="doImport(event)"></label></div>';
   } else if(mode==='new'){
-    panel.innerHTML = '<div class="home-mode-card"><span class="eyebrow">Profile</span><h3>Investor basics</h3><div class="fgrid mt12"><div class="field"><span>Full name</span><input id="pName" type="text" placeholder="e.g. Alex Smith" oninput="saveProfile()"></div><div class="field"><span>Age</span><input id="pAge" type="number" min="1" max="100" placeholder="e.g. 35" oninput="saveProfile()"></div></div><div class="field mt12"><span>Retirement lifestyle <span title="What Each Category Means\n1. Basic Lifestyle\nCovers essentials only\nHeavy reliance on the Age Pension\nNo travel, no dining out, no new car\nVery limited discretionary spending\n\n2. Modest Lifestyle\nSlightly better than basic\nOccasional meals out\nLimited domestic travel\nOlder car, minimal upgrades\nStill relies partly on Age Pension\n\n3. Comfortable Lifestyle (ASFA’s main benchmark)\nRegular dining out\nDomestic + some international travel\nPrivate health insurance\nNew car every 5–7 years\nGood technology, hobbies, entertainment\n\n4. Luxury Lifestyle (above ASFA Comfortable)\nMultiple international trips\nPremium dining, entertainment\nHigh-end car every 5 years\nNo financial stress\nAbility to help children, donate, upgrade home">ⓘ</span></span><select id="pLifestyle" onchange="saveProfile()"><option value="Basic">Basic</option><option value="Modest">Modest</option><option value="Comfortable">Comfortable</option><option value="Luxury">Luxury</option></select></div><p class="note mt12">Age and lifestyle are used to shape the recommended allocation shown in Summary.</p><div class="brow mt16"><button id="homeTrackBtn" class="btn bp" onclick="trackInvestments()">Track Investments</button></div></div>';
+    panel.innerHTML = '<div class="home-mode-card"><span class="eyebrow">Profile</span><h3>Investor basics</h3><div class="fgrid mt12"><div class="field"><span>Full name</span><input id="pName" type="text" placeholder="e.g. Alex Smith" oninput="saveProfile()"></div><div class="field"><span>Age</span><input id="pAge" type="number" min="1" max="100" placeholder="e.g. 35" oninput="saveProfile()"></div><div class="field"><span>Planned Retirement Age</span><input id="pRetireAge" type="number" min="1" max="100" placeholder="e.g. 67" oninput="saveProfile()"></div><div class="field"><span>Retirement lifestyle <span title="What Each Category Means\n1. Basic Lifestyle\nCovers essentials only\nHeavy reliance on the Age Pension\nNo travel, no dining out, no new car\nVery limited discretionary spending\n\n2. Modest Lifestyle\nSlightly better than basic\nOccasional meals out\nLimited domestic travel\nOlder car, minimal upgrades\nStill relies partly on Age Pension\n\n3. Comfortable Lifestyle (ASFA’s main benchmark)\nRegular dining out\nDomestic + some international travel\nPrivate health insurance\nNew car every 5–7 years\nGood technology, hobbies, entertainment\n\n4. Luxury Lifestyle (above ASFA Comfortable)\nMultiple international trips\nPremium dining, entertainment\nHigh-end car every 5 years\nNo financial stress\nAbility to help children, donate, upgrade home">ⓘ</span></span><select id="pLifestyle" onchange="saveProfile()"><option value="Basic">Basic</option><option value="Modest">Modest</option><option value="Comfortable">Comfortable</option><option value="Luxury">Luxury</option></select></div></div><p class="note mt12">Age and lifestyle are used to shape the recommended allocation shown in Summary.</p><div class="brow mt16"><button id="homeTrackBtn" class="btn bp" onclick="trackInvestments()">Track Investments</button></div></div>';
     hydrateProfileFields();
   } else {
     panel.innerHTML = '<div class="home-mode-card"><span class="eyebrow">Start</span><h3>Select a path</h3><p class="note mt8">Choose New User to create a fresh profile or Existing User to import a saved JSON file.</p></div>';
   }
 }
-
 function showConfirmDialog(message, onConfirm) {
   document.getElementById('confirmModalMessage').textContent = message;
   document.getElementById('confirmModal').style.display = 'flex';
   window.__confirmResolver = onConfirm;
 }
-
 function resolveConfirm(ok) {
   document.getElementById('confirmModal').style.display = 'none';
   var cb = window.__confirmResolver;
@@ -1028,11 +1249,9 @@ function resolveConfirm(ok) {
   if(typeof cb === 'function') cb(ok);
 }
 
-// ── HOME STATS ────────────────────────────────────────────────
 function sc(lbl,val,sub,col){
   return '<div class="sc"><div class="lbl">'+lbl+'</div><div class="val" style="color:'+(col||'var(--text)')+'">'+val+'</div><div class="sub">'+sub+'</div></div>';
 }
-
 function renderHomeStats(){
   var note=document.getElementById('homeUnlockNote');
   if(note) note.style.display = ST.meta.importedFromJson ? 'none' : 'block';
@@ -1040,20 +1259,17 @@ function renderHomeStats(){
   if(trackBtn) trackBtn.style.display = 'inline-flex';
   renderNavButtons();
 }
-
 function totalAnnualIncomeDisplay(){ return totalIncome(); }
 
-// ── INVESTMENT FIELDS ─────────────────────────────────────────
 var _editInvId = null;
-
 function renderInvFields(data) {
   var type = document.getElementById('invType').value;
   var d = data||{};
   var html = '';
   if(type==='property'){
     html='<div class="fgrid">'+
-      fld('Purchase price','purchasePrice','number','e.g. 650000',d.purchasePrice)+
-      fld('Current market value','marketValue','number','e.g. 720000',d.marketValue)+
+      fld('Purchase price *','purchasePrice','number','e.g. 650000',d.purchasePrice)+
+      fld('Current market value *','marketValue','number','e.g. 720000',d.marketValue)+
       fld('Stamp duty &amp; legal','costs','number','e.g. 25000',d.costs)+
       fld('Renovation / upfront','reno','number','e.g. 15000',d.reno)+
       fldX('Loan amount','loanAmount','number','e.g. 520000',d.loanAmount,'id="fLA"')+
@@ -1070,35 +1286,34 @@ function renderInvFields(data) {
       fld('Other expenses (monthly)','monthlyOtherExpenses','number','e.g. 120',d.monthlyOtherExpenses)+
       fld('Annual tax rebate','annualTaxRebate','number','e.g. 12000',d.annualTaxRebate)+
       fldX('Rent growth %','rentGrowth','number','e.g. 3.5',d.rentGrowth,'step="0.1"')+
-      fld('Holding period (years)','years','number','e.g. 10',d.years)+
+      fld('Holding period (years) *','years','number','e.g. 10',d.years)+
       fld('Expected sale price','salePrice','number','e.g. 950000',d.salePrice)+
     '</div>';
     setTimeout(wireEMI, 50);
   } else if(type==='shares'||type==='crypto'||type==='gold'||type==='goldbonds'){
     html='<div class="fgrid">'+
-      fld('Current value (AUD)','currentValue','number','e.g. 25000',d.currentValue)+
-      fldX('Cost basis (AUD)','costBasis','number','e.g. 18000',d.costBasis,'title="The original purchase price used to calculate gains and losses"')+
-      fld('Annual distributions / yield (AUD)','annualDistributions','number','e.g. 1200',d.annualDistributions)+
-      fld('Holding period (years)','years','number','e.g. 5',d.years)+
-      fld('Annual fees / storage cost (AUD)','annualCosts','number','e.g. 150',d.annualCosts)+
+      fld('Current value (AUD) *','currentValue','number','e.g. 25000',d.currentValue)+
+      fldX('Cost basis (AUD) *','costBasis','number','e.g. 18000',d.costBasis,'title="The original purchase price used to calculate gains and losses"')+
+      fld('Annual distributions (AUD)','annualDistributions','number','e.g. 1200',d.annualDistributions)+
+      fld('Holding period (years) *','years','number','e.g. 5',d.years)+
+      fld('Annual fees (AUD)','annualCosts','number','e.g. 150',d.annualCosts)+
     '</div>';
   } else if(type==='bonds'){
     html='<div class="fgrid">'+
-      fld('Current market value (AUD)','currentValue','number','e.g. 10500',d.currentValue)+
-      fldX('Cost basis (AUD)','costBasis','number','e.g. 10000',d.costBasis,'title="The original purchase price used to calculate gains and losses"')+
+      fld('Current market value (AUD) *','currentValue','number','e.g. 10500',d.currentValue)+
+      fldX('Cost basis (AUD) *','costBasis','number','e.g. 10000',d.costBasis,'title="The original purchase price"')+
       fld('Coupon rate (%)','couponRate','number','e.g. 4.5',d.couponRate)+
-      fld('Redemption / face value (AUD)','redemptionValue','number','e.g. 10000',d.redemptionValue)+
-      fld('Holding period (years)','years','number','e.g. 5',d.years)+
-      fld('Annual fees / charges (AUD)','annualCosts','number','e.g. 50',d.annualCosts)+
+      fld('Redemption value (AUD)','redemptionValue','number','e.g. 10000',d.redemptionValue)+
+      fld('Holding period (years) *','years','number','e.g. 5',d.years)+
+      fld('Annual fees (AUD)','annualCosts','number','e.g. 50',d.annualCosts)+
     '</div>';
   } else if(type==='termdeposit'){
-    html='<div class="fgrid">'+fld('Principal (AUD)','principal','number','e.g. 20000',d.principal)+fldX('Rate (%)','rate','number','e.g. 4.5',d.rate,'step="0.01"')+fld('Term (years)','years','number','e.g. 2',d.years)+'</div>';
+    html='<div class="fgrid">'+fld('Principal (AUD) *','principal','number','e.g. 20000',d.principal)+fldX('Rate (%) *','rate','number','e.g. 4.5',d.rate,'step="0.01"')+fld('Term (years) *','years','number','e.g. 2',d.years)+'</div>';
   } else if(type==='cash'){
-    html='<div class="fgrid">'+fld('Cash amount (AUD)','cash','number','e.g. 5000',d.cash)+'</div>';
+    html='<div class="fgrid">'+fld('Cash amount (AUD) *','cash','number','e.g. 5000',d.cash)+'</div>';
   }
   document.getElementById('invFields').innerHTML = html;
 }
-
 function fld(lbl,name,type,ph,val){
   var v = val!=null&&val!=='' ? ' value="'+val+'"' : '';
   return '<div class="field"><span>'+lbl+'</span><input name="'+name+'" type="'+type+'" placeholder="'+ph+'"'+v+'></div>';
@@ -1107,7 +1322,6 @@ function fldX(lbl,name,type,ph,val,extra){
   var v = val!=null&&val!=='' ? ' value="'+val+'"' : '';
   return '<div class="field"><span>'+lbl+'</span><input name="'+name+'" type="'+type+'" placeholder="'+ph+'"'+v+' '+(extra||'')+'></div>';
 }
-
 function wireEMI() {
   var la=document.getElementById('fLA'),lr=document.getElementById('fLR'),
       lt=document.getElementById('fLT'),le=document.getElementById('fLE');
@@ -1116,7 +1330,6 @@ function wireEMI() {
   la.addEventListener('input',upd); lr.addEventListener('input',upd); lt.addEventListener('input',upd);
   upd();
 }
-
 function collectInvData() {
   var data = {};
   document.querySelectorAll('#invFields [name]').forEach(function(el){
@@ -1124,7 +1337,6 @@ function collectInvData() {
   });
   return data;
 }
-
 function newInv() {
   _editInvId = null;
   document.getElementById('invTitle').textContent = 'Add investment';
@@ -1132,9 +1344,7 @@ function newInv() {
   document.getElementById('invType').value = '';
   document.getElementById('invFields').innerHTML = '';
 }
-
 function cancelInv() { newInv(); }
-
 function saveInv() {
   var name = document.getElementById('invName').value.trim();
   var type = document.getElementById('invType').value;
@@ -1152,7 +1362,6 @@ function saveInv() {
   renderInvList();
   renderHomeStats();
 }
-
 function editInv(id) {
   var iv = ST.investments.find(function(x){ return x.id===id; });
   if(!iv) return;
@@ -1163,7 +1372,6 @@ function editInv(id) {
   renderInvFields(iv);
   showPage('investments');
 }
-
 function deleteInv(id) {
   showConfirmDialog('Delete this investment?', function(ok){
     if(!ok) return;
@@ -1173,7 +1381,6 @@ function deleteInv(id) {
     renderHomeStats();
   });
 }
-
 function renderInvList() {
   var el = document.getElementById('invList');
   if(!ST.investments.length){
@@ -1181,10 +1388,14 @@ function renderInvList() {
   }
   var bmap={property:'bpu',shares:'bbl',crypto:'byw',gold:'byw',goldbonds:'bgr',bonds:'bbn',termdeposit:'bgr',cash:'bbl'};
   el.innerHTML = ST.investments.map(function(iv){
-    var val=invValue(iv),irr=getIRR(iv),irrs=irr==null?'N/A':pct(irr);
+    var val = invValue(iv);
+    var irr = getIRR(iv);
+    var irrs = iv.type === 'cash' ? 'N/A' : (irr==null||isNaN(irr) ? 'N/A' : pct(irr));
+    var invalid = iv.type !== 'cash' && (irr==null||isNaN(irr)||irr===0);
+    var alertIcon = invalid ? ' <span style="color:var(--danger);" title="Invalid IRR. Please check mandatory fields.">⚠</span>' : '';
     return `
       <div class="icard">
-        <div class="ititle">${iv.name}<span class="bdg ${(bmap[iv.type]||'bbl')}">${iv.type}</span></div>
+        <div class="ititle">${iv.name}<span class="bdg ${(bmap[iv.type]||'bbl')}">${iv.type}</span>${alertIcon}</div>
         <div class="imeta">Value: ${money(val)} &nbsp;·&nbsp; IRR: ${irrs}</div>
         <div class="iactions">
           <button class="btn bo bsm" onclick="editInv('${iv.id}')">✎ Edit</button>
@@ -1194,9 +1405,7 @@ function renderInvList() {
   }).join('');
 }
 
-// ── INCOME ────────────────────────────────────────────────────
 var _editIncId = null;
-
 function newInc() {
   _editIncId = null;
   document.getElementById('incTitle').textContent = 'Add income source';
@@ -1205,9 +1414,7 @@ function newInc() {
   document.getElementById('incFreq').value='monthly';
   document.getElementById('rRegular').checked=true;
 }
-
 function cancelInc() { newInc(); }
-
 function saveInc() {
   var name  = document.getElementById('incName').value.trim()||'Income';
   var amt   = Number(document.getElementById('incAmt').value)||0;
@@ -1223,7 +1430,6 @@ function saveInc() {
   renderIncList();
   renderHomeStats();
 }
-
 function editInc(id) {
   var ic = ST.income.find(function(x){ return x.id===id; });
   if(!ic) return;
@@ -1232,11 +1438,9 @@ function editInc(id) {
   document.getElementById('incName').value  = ic.name;
   document.getElementById('incAmt').value   = ic.amount;
   document.getElementById('incFreq').value  = ic.freq;
-  var r=document.querySelector('input[name="incKind"][value="'+ic.kind+'"]');
-  if(r) r.checked=true;
-  showPage('income');
+  var radios = document.querySelectorAll('input[name="incKind"]');
+  radios.forEach(function(r){ r.checked = (r.value === ic.kind); });
 }
-
 function deleteInc(id) {
   showConfirmDialog('Delete this income source?', function(ok){
     if(!ok) return;
@@ -1246,7 +1450,6 @@ function deleteInc(id) {
     renderHomeStats();
   });
 }
-
 function renderIncList() {
   var el=document.getElementById('incList');
   if(!ST.income.length){
@@ -1265,9 +1468,145 @@ function renderIncList() {
   }).join('');
 }
 
-// ── CHARTS ────────────────────────────────────────────────────
-var _charts={};
-var COLS=['#6c63ff','#4f8cff','#22d3a3','#fbbf24','#f472b6','#34d399','#f87171'];
+
+// ── EXPENSES ─────────────────────────────────────────────────
+var _editExpId = null;
+
+function newExp() {
+  _editExpId = null;
+  document.getElementById('expTitle').textContent = 'Add living expense';
+  document.getElementById('expName').value  = '';
+  document.getElementById('expAmt').value   = '';
+  document.getElementById('expFreq').value  = 'monthly';
+}
+
+function cancelExp() { newExp(); }
+
+function saveExp() {
+  var name = document.getElementById('expName').value.trim() || 'Expense';
+  var amt  = Number(document.getElementById('expAmt').value) || 0;
+  var freq = document.getElementById('expFreq').value;
+  var item = {id: _editExpId || uid(), name: name, amount: amt, freq: freq};
+  var idx  = ST.expenses.findIndex(function(x){ return x.id === item.id; });
+  if(idx >= 0) ST.expenses[idx] = item; else ST.expenses.push(item);
+  _editExpId = null;
+  persist();
+  newExp();
+  renderExpList();
+}
+
+function editExp(id) {
+  var ex = ST.expenses.find(function(x){ return x.id === id; });
+  if(!ex) return;
+  _editExpId = ex.id;
+  document.getElementById('expTitle').textContent = 'Edit expense';
+  document.getElementById('expName').value  = ex.name;
+  document.getElementById('expAmt').value   = ex.amount;
+  document.getElementById('expFreq').value  = ex.freq;
+}
+
+function deleteExp(id) {
+  showConfirmDialog('Delete this expense?', function(ok){
+    if(!ok) return;
+    ST.expenses = ST.expenses.filter(function(x){ return x.id !== id; });
+    persist();
+    renderExpList();
+  });
+}
+
+function renderExpList() {
+  var el = document.getElementById('expList');
+  if(!el) return;
+  if(!ST.expenses || !ST.expenses.length){
+    el.innerHTML = '<div class="empty">No expenses yet. Use the form to add one.</div>';
+    return;
+  }
+  var fmap = {weekly:'Weekly', fortnightly:'Fortnightly', monthly:'Monthly', annual:'Annual'};
+  var totalAnnual = totalLivingExpenses();
+  el.innerHTML = ST.expenses.map(function(ex){
+    var annAmt = (ex.freq==='weekly') ? ex.amount*52
+               : (ex.freq==='fortnightly') ? ex.amount*26
+               : (ex.freq==='monthly') ? ex.amount*12 : ex.amount;
+    return '<div class="icard">' +
+      '<div class="ititle">' + ex.name + '</div>' +
+      '<div class="imeta">' + money(ex.amount) + ' / ' + (fmap[ex.freq]||ex.freq) +
+        ' &nbsp;·&nbsp; ' + money(annAmt) + ' p.a.</div>' +
+      '<div class="iactions">' +
+        '<button class="btn bo bsm" onclick="editExp(\'' + ex.id + '\')">✎ Edit</button>' +
+        '<button class="btn bdn bsm" onclick="deleteExp(\'' + ex.id + '\')">✕ Delete</button>' +
+      '</div></div>';
+  }).join('') +
+  '<div class="icard" style="background:rgba(34,211,163,.06);border-color:rgba(34,211,163,.3)">' +
+    '<div class="ititle" style="color:var(--success)">Total annual expenses</div>' +
+    '<div class="imeta" style="font-size:1.1rem;font-weight:800;color:var(--text)">' + money(totalAnnual) + '</div>' +
+  '</div>';
+}
+
+// ── SUPERANNUATION ────────────────────────────────────────────
+function toggleSuper() {
+  var tog = document.getElementById('superToggle');
+  ST.super.enabled = tog ? tog.checked : false;
+  persist();
+  renderSuperFields();
+}
+
+function renderSuperFields() {
+  var tog = document.getElementById('superToggle');
+  var form = document.getElementById('superForm');
+  if(!form) return;
+  if(tog) tog.checked = !!ST.super.enabled;
+  form.style.display = ST.super.enabled ? 'block' : 'none';
+  if(!ST.super.enabled) return;
+  // hydrate fields and preserve selection
+  var typeEl = document.getElementById('superType');
+  if(typeEl) {
+    ST.super.type = typeEl.value || ST.super.type || 'standard';
+    typeEl.value = ST.super.type;
+  }
+  persist();
+  var balEl  = document.getElementById('superBalance');
+  var conEl  = document.getElementById('superContrib');
+  if(balEl)  balEl.value  = ST.super.balance || '';
+  if(conEl)  conEl.value  = ST.super.contrib  || '';
+  var smsfDiv = document.getElementById('smsfFields');
+  if(smsfDiv) smsfDiv.style.display = (ST.super.type === 'smsf') ? 'grid' : 'none';
+  var spEl = document.getElementById('superSmsfProp');
+  var slEl = document.getElementById('superSmsfLoan');
+  if(spEl) spEl.value = ST.super.smsfProp || '';
+  if(slEl) slEl.value = ST.super.smsfLoan || '';
+}
+
+function saveSuper() {
+  var typeEl = document.getElementById('superType');
+  var balEl  = document.getElementById('superBalance');
+  var conEl  = document.getElementById('superContrib');
+  var spEl   = document.getElementById('superSmsfProp');
+  var slEl   = document.getElementById('superSmsfLoan');
+  if(typeEl) ST.super.type    = typeEl.value;
+  if(balEl)  ST.super.balance = balEl.value;
+  if(conEl)  ST.super.contrib = conEl.value;
+  if(spEl)   ST.super.smsfProp = spEl.value;
+  if(slEl)   ST.super.smsfLoan = slEl.value;
+  var smsfDiv = document.getElementById('smsfFields');
+  if(smsfDiv) smsfDiv.style.display = (ST.super.type === 'smsf') ? 'grid' : 'none';
+  persist();
+}
+
+function getSuperBalance() {
+  if(!ST.super || !ST.super.enabled) return 0;
+  if(ST.super.type === 'smsf') {
+    var prop = Number(ST.super.smsfProp)||0;
+    var loan = Number(ST.super.smsfLoan)||0;
+    var liquid = Number(ST.super.balance)||0;
+    return liquid + Math.max(0, prop - loan);
+  }
+  return Number(ST.super.balance)||0;
+}
+
+function getSuperAnnualContrib() {
+  if(!ST.super || !ST.super.enabled) return 0;
+  return Number(ST.super.contrib)||0;
+}
 
 function mkChart(id, opts){
   if(_charts[id]){ try{_charts[id].destroy();}catch(e){} delete _charts[id]; }
@@ -1277,9 +1616,6 @@ function mkChart(id, opts){
   c.render();
   _charts[id]=c;
 }
-
-var DB = {chart:{toolbar:{show:false},background:'transparent',fontFamily:"'Inter',system-ui,sans-serif",foreColor:'#94a3b8'},theme:{mode:'dark'},grid:{borderColor:'rgba(255,255,255,0.07)',strokeDashArray:3},legend:{labels:{colors:'#cbd5e1'}},dataLabels:{enabled:false},tooltip:{theme:'dark'}};
-
 function donut(id,labels,series){
   var nz=series.some(function(v){return v>0;});
   if(!nz){document.getElementById(id).innerHTML='<div class="empty">Add investments to see chart.</div>';return;}
@@ -1289,7 +1625,6 @@ function donut(id,labels,series){
     ,responsive:[{breakpoint:600,options:{chart:{height:240},legend:{position:'bottom'}}}]
   });
 }
-
 function barV(id,cats,data,name,col,pctFmt){
   mkChart(id,{chart:Object.assign({},DB.chart,{type:'bar',height:300}),theme:DB.theme,grid:DB.grid,legend:DB.legend,dataLabels:DB.dataLabels,tooltip:DB.tooltip,
     series:[{name:name||'Value',data:data}],xaxis:{categories:cats},
@@ -1298,7 +1633,6 @@ function barV(id,cats,data,name,col,pctFmt){
     responsive:[{breakpoint:600,options:{chart:{height:240}}}]
   });
 }
-
 function barH(id,cats,data,name,col){
   mkChart(id,{chart:Object.assign({},DB.chart,{type:'bar',height:Math.max(220,cats.length*42)}),theme:DB.theme,grid:DB.grid,legend:DB.legend,dataLabels:DB.dataLabels,tooltip:DB.tooltip,
     series:[{name:name||'IRR %',data:data}],xaxis:{categories:cats},
@@ -1307,7 +1641,6 @@ function barH(id,cats,data,name,col){
     responsive:[{breakpoint:600,options:{chart:{height:240}}}]
   });
 }
-
 function area(id,cats,data){
   mkChart(id,{chart:Object.assign({},DB.chart,{type:'area',height:300}),theme:DB.theme,grid:DB.grid,legend:DB.legend,dataLabels:DB.dataLabels,tooltip:DB.tooltip,
     series:[{name:'Projected wealth',data:data}],xaxis:{categories:cats},
@@ -1317,7 +1650,6 @@ function area(id,cats,data){
     responsive:[{breakpoint:600,options:{chart:{height:240}}}]
   });
 }
-
 function grouped(id,cats,s1,s2,n1,n2){
   mkChart(id,{chart:Object.assign({},DB.chart,{type:'bar',height:300}),theme:DB.theme,grid:DB.grid,legend:Object.assign({},DB.legend),dataLabels:DB.dataLabels,tooltip:DB.tooltip,
     series:[{name:n1,data:s1},{name:n2,data:s2}],xaxis:{categories:cats},
@@ -1326,13 +1658,10 @@ function grouped(id,cats,s1,s2,n1,n2){
     responsive:[{breakpoint:600,options:{chart:{height:240}}}]
   });
 }
-
-// ── PROJECTION ────────────────────────────────────────────────
 function getBenchmarkIRR(type) {
   var map = {property:8, shares:10, crypto:12, gold:6, goldbonds:7, bonds:4, termdeposit:3.5, cash:2.5};
   return map[type] || 7;
 }
-
 function renderProjectionPage() {
   var items = ST.investments.map(function(iv){
     var irr = getIRR(iv);
@@ -1363,7 +1692,9 @@ function renderProjectionPage() {
   document.getElementById('projectionInsights').innerHTML = insights;
 }
 
-// ── SUMMARY ───────────────────────────────────────────────────
+function classifyRec(age, targetType) {
+  return normalizeRiskProfile(targetType||'Balanced');
+}
 function renderSummaryInsights(tab) {
   var active = tab || (_summaryActiveTab || 'current');
   var t=allocs(),total=totalPf(),inc=totalIncome(),irr=avgIRR(),type=classify(t);
@@ -1426,6 +1757,7 @@ function renderSummaryInsights(tab) {
     '</div>';
 }
 
+
 function renderSummary(){
   var t=allocs(),total=totalPf(),inc=totalIncome(),irr=avgIRR(),type=classify(t);
   var age=Number(ST.profile.age)||30;
@@ -1478,53 +1810,229 @@ function renderSummary(){
   switchSummaryTab(_summaryActiveTab || 'current');
 }
 
-// ── RETIREMENT PATHWAY ───────────────────────────────────────
-function getRetirementMapping(age) {
-  var ageValue = Number(age)||30;
-  if(ageValue < 30) return {risk:'High Growth', requiredSingle:[120000,180000], requiredCouple:[180000,260000], likely:'Basic → Modest', luxury:'Possible with high income + early investing'};
-  if(ageValue < 40) return {risk:'Growth', requiredSingle:[250000,400000], requiredCouple:[450000,650000], likely:'Modest → Comfortable', luxury:'Yes, if savings rate is strong'};
-  if(ageValue < 50) return {risk:'Balanced', requiredSingle:[550000,850000], requiredCouple:[900000,1400000], likely:'Comfortable', luxury:'Achievable for high earners'};
-  if(ageValue < 60) return {risk:'Moderate Growth', requiredSingle:[1100000,1600000], requiredCouple:[1800000,2600000], likely:'Comfortable → Luxury', luxury:'Very achievable with catch-up contributions'};
-  if(ageValue < 68) return {risk:'Stable', requiredSingle:[1900000,2300000], requiredCouple:[3000000,3500000], likely:'Comfortable → Luxury', luxury:'Depends on final super + assets'};
-  return {risk:'Conservative', requiredSingle:[null,null], requiredCouple:[null,null], likely:'Anywhere from Basic → Luxury', luxury:'Requires $2.2M–$4.5M nest egg'};
+
+
+// ── RETIREMENT PATHWAY ────────────────────────────────────────
+function getRetirementBenchmark(lifestyle) {
+  // ASFA retirement standard (annual, AUD, 2024 estimates)
+  var map = {
+    'Basic':       28000,
+    'Modest':      35000,
+    'Comfortable': 72000,
+    'Luxury':     120000,
+  };
+  return map[lifestyle] || 72000;
+}
+
+function safeProjectionRate() {
+  // Use avg IRR but cap at 10% and floor at 4% - prevents insane projections
+  var raw = avgIRR();
+  if(!raw || !isFinite(raw) || raw <= 0) return 0.07;
+  return Math.min(0.10, Math.max(0.04, raw / 100));
+}
+
+function projectWealth(startBalance, annualContrib, superContrib, years, rate) {
+  var bal = startBalance;
+  var contrib = annualContrib + superContrib;
+  for(var y = 0; y < years; y++) {
+    bal = (bal + contrib) * (1 + rate);
+  }
+  return Math.round(bal);
+}
+
+function getIndustryBenchmark(age, lifestyle, couple) {
+  // Estimate a sensible industry average wealth target at the current age for the chosen retirement lifestyle.
+  var annual = getRetirementBenchmark(lifestyle);
+  var coupleFactor = couple ? 1.45 : 1;
+  var target = annual * 20 * coupleFactor; // target lump sum at age 67 for a couple or single
+  var ageValue = Math.min(67, Math.max(20, Number(age) || 30));
+  var yearsTo67 = Math.max(0, 67 - ageValue);
+  if (yearsTo67 === 0) return target;
+  var rate = 0.065;
+  var benchmark = target / Math.pow(1 + rate, yearsTo67);
+  var minimum = target * 0.12;
+  return Math.round(Math.max(benchmark, minimum));
 }
 
 function renderRetirementPage() {
-  var age = Number(ST.profile.age)||30;
-  var lifestyle = ST.profile.lifestyle || 'Comfortable';
-  var mapping = getRetirementMapping(age);
-  var targetProfile = normalizeRiskProfile(ST.profile.targetType || getSuggestedRiskProfile(age, lifestyle));
-  var currentValue = totalPf();
-  var annualIncome = totalIncome();
-  var contributionRate = 0.15;
-  var annualContribution = annualIncome * contributionRate;
-  var yearsToRetirement = Math.max(0, 67 - age);
-  var growthRate = getExpectedProjectionRate(targetProfile);
-  var projectedValue = currentValue;
-  for (var y = 0; y < yearsToRetirement; y++) {
-    projectedValue = (projectedValue + annualContribution) * (1 + growthRate);
+  var age         = Number(ST.profile.age) || 40;
+  var retireAge   = Number(ST.profile.retireAge) || 67;
+  var lifestyle   = ST.profile.lifestyle || 'Comfortable';
+  var rate        = safeProjectionRate();
+  var pf          = totalPf();
+  var superBal    = getSuperBalance();
+  var superContrib = getSuperAnnualContrib();
+  var annualSavings = Math.max(0, totalIncome() - totalOutflow()) * 0.25;
+  var totalNow    = pf + superBal;
+
+  var benchmarkAnnual = getRetirementBenchmark(lifestyle);
+  var benchmarkLumpsum = benchmarkAnnual * 20;
+
+  // Years from now to each milestone
+  var yearsToRetire = Math.max(0, retireAge - age);
+  var yearsTo67     = Math.max(0, 67 - age);
+
+  // Projected values
+  var projAtRetire = projectWealth(totalNow, annualSavings, superContrib, yearsToRetire, rate);
+  var projAt67     = projectWealth(totalNow, annualSavings, superContrib, yearsTo67, rate);
+
+  // Industry benchmarks at each milestone
+  var benchNow     = getIndustryBenchmark(age, lifestyle, true);
+  var benchRetire  = getIndustryBenchmark(retireAge, lifestyle, true);
+  var benchAt67    = getIndustryBenchmark(67, lifestyle, true);
+
+  // ── 3 Radial / Bar charts ──
+  function pct2(val, target) {
+    if(!target) return 0;
+    return Math.min(150, Math.round(val / target * 100));
   }
 
-  var expectedHtml = [
-    '<div class="mixrow">',
-    '<div class="mbox con"><div class="mlbl">Suggested risk profile</div><div class="mval">'+mapping.risk+'</div></div>',
-    '<div class="mbox bal"><div class="mlbl">Likely lifestyle outcome</div><div class="mval">'+mapping.likely+'</div></div>',
-    '</div>',
-    '<div class="iitem"><strong>Expected path:</strong> At your age, the broad industry guidance suggests a '+mapping.risk+' strategy, with a target retirement savings range of <strong>'+formatSavingsRange(mapping.requiredSingle, mapping.requiredCouple)+'</strong> today for a single or couple plan.</div>',
-    '<div class="iitem"><strong>Retirement lifestyle:</strong> Your selected '+lifestyle+' lifestyle means the plan should aim for <strong>'+getLifestyleNarrative(lifestyle)+'</strong>.</div>'
-  ].join('');
+  function renderGaugeChart(elId, label, yourVal, benchVal, age) {
+    var el = document.getElementById(elId);
+    if(!el) return;
+    var pctVal = pct2(yourVal, benchVal);
+    var colour = pctVal >= 100 ? '#22d3a3' : pctVal >= 60 ? '#fbbf24' : '#f87171';
+    var opts = {
+      chart: { type: 'radialBar', height: 220,
+        background: 'transparent',
+        toolbar: { show: false } },
+      plotOptions: {
+        radialBar: {
+          startAngle: -135, endAngle: 135,
+          hollow: { size: '55%' },
+          dataLabels: {
+            name:  { show: true, fontSize: '12px', color: '#8898c4', offsetY: -8 },
+            value: { show: true, fontSize: '1.3rem', fontWeight: 800, color: '#eef2ff',
+                     offsetY: 6,
+                     formatter: function() { return pctVal + '%'; } }
+          },
+          track: { background: 'rgba(255,255,255,0.06)' },
+        }
+      },
+      fill: { colors: [colour] },
+      stroke: { lineCap: 'round' },
+      series: [Math.min(pctVal, 100)],
+      labels: ['vs Industry average'],
+      theme: { mode: 'dark' },
+      tooltip: { enabled: false },
+    };
+    if(el._apexChart) { el._apexChart.destroy(); }
+    el.innerHTML = '';
+    var div = document.createElement('div');
+    el.appendChild(div);
+    var ch = new ApexCharts(div, opts);
+    ch.render();
+    el._apexChart = ch;
 
-  var actualHtml = [
-    '<div class="mixrow">',
-    '<div class="mbox con"><div class="mlbl">Current portfolio</div><div class="mval">'+money(currentValue)+'</div></div>',
-    '<div class="mbox bal"><div class="mlbl">Projected at 67</div><div class="mval">'+money(projectedValue)+'</div></div>',
-    '</div>',
-    '<div class="iitem"><strong>Actual path:</strong> Based on your current investments of <strong>'+money(currentValue)+'</strong>, annual income of <strong>'+money(annualIncome)+'</strong>, and an assumed <strong>'+pct(contributionRate*100)+'</strong> annual contribution rate, the simple projection indicates an estimated <strong>'+money(projectedValue)+'</strong> by age 67.</div>',
-    '<div class="iitem"><strong>Target benchmark:</strong> Your current age and selected lifestyle point to a target range of <strong>'+formatSavingsRange(mapping.requiredSingle, mapping.requiredCouple)+'</strong> today, so your actual path is <strong>'+(projectedValue >= (mapping.requiredSingle && mapping.requiredSingle[1] || 0) ? 'tracking well' : 'below the benchmark')+'</strong>.</div>'
-  ].join('');
+    // Text below
+    var info = document.createElement('div');
+    info.style.cssText = 'text-align:center;margin-top:6px;font-size:12px;color:var(--muted)';
+    info.innerHTML =
+      '<div style="color:var(--text);font-weight:700;font-size:1rem">' + money(yourVal) + '</div>' +
+      '<div>Your projection (age ' + age + ')</div>' +
+      '<div style="margin-top:4px">Industry average: ' + money(benchVal) + '</div>';
+    el.appendChild(info);
+  }
 
-  document.getElementById('retirementExpectedPath').innerHTML = expectedHtml;
-  document.getElementById('retirementActualPath').innerHTML = actualHtml;
+  renderGaugeChart('chRetCurrent', 'Now', totalNow, benchNow, age);
+  renderGaugeChart('chRetPlanned', 'Retirement', projAtRetire, benchRetire, retireAge);
+  renderGaugeChart('chRet67',      'Age 67',     projAt67,     benchAt67,   67);
+
+  // Update chart labels
+  var lblCur = document.getElementById('lblRetCurrent');
+  var lblPln = document.getElementById('lblRetPlanned');
+  var lblA67 = document.getElementById('lblRet67');
+  if(lblCur) lblCur.textContent = 'Couple age ' + age;
+  if(lblPln) lblPln.textContent = 'Couple age ' + retireAge;
+  if(lblA67) lblA67.textContent = 'Couple age 67';
+
+  // ── Expected path ──
+  var expDiv = document.getElementById('retirementExpectedPath');
+  if(expDiv) {
+    var suggestedProfile = getSuggestedRiskProfile(age, lifestyle);
+    expDiv.innerHTML =
+      '<div class="iblock">' +
+        '<div class="iitem">Based on your age of <strong>' + age + '</strong> and <strong>' + lifestyle + '</strong> lifestyle, ' +
+          'your suggested risk profile is <strong>' + suggestedProfile + '</strong>.</div>' +
+        '<div class="iitem">Industry average: To support a <strong>' + lifestyle + '</strong> retirement lifestyle, ' +
+          'you should target approximately <strong>' + money(benchmarkLumpsum) + '</strong> by age 67 ' +
+          '(based on the 4% drawdown rule, needing ' + money(benchmarkAnnual) + '/year).</div>' +
+        '<div class="iitem">At your planned retirement age of <strong>' + retireAge + '</strong>, ' +
+          'the industry average target is approximately <strong>' + money(benchRetire) + '</strong>.</div>' +
+      '</div>';
+  }
+
+  // ── Actual path ──
+  var actDiv = document.getElementById('retirementActualPath');
+  if(actDiv) {
+    var onTrack = projAtRetire >= benchRetire;
+    var gap = benchRetire - projAtRetire;
+    var statusColour = onTrack ? 'var(--success)' : 'var(--danger)';
+    var statusText   = onTrack ? '✅ On track' : '⚠️ Gap identified';
+    actDiv.innerHTML =
+      '<div class="iblock">' +
+        '<div class="iitem">Current portfolio: <strong>' + money(pf) + '</strong>' +
+          (ST.super.enabled ? ' + Super: <strong>' + money(superBal) + '</strong>' : '') +
+          ' = Total: <strong>' + money(totalNow) + '</strong></div>' +
+        '<div class="iitem">Projected annual growth rate: <strong>' + (rate*100).toFixed(1) + '%</strong> ' +
+          '(capped from your portfolio IRR for realistic planning)</div>' +
+        '<div class="iitem" style="border-color:' + statusColour + '">' +
+          '<strong style="color:' + statusColour + '">' + statusText + '</strong> — ' +
+          'At retirement age <strong>' + retireAge + '</strong> you are projected to have <strong>' + money(projAtRetire) + '</strong>. ' +
+          (onTrack
+            ? 'This exceeds your benchmark of ' + money(benchRetire) + ' by ' + money(projAtRetire - benchRetire) + '.'
+            : 'This is <strong>' + money(gap) + '</strong> below your benchmark of ' + money(benchRetire) + '.') +
+        '</div>' +
+        (ST.super.enabled
+          ? '<div class="iitem">Super contributions of <strong>' + money(superContrib) + '/yr</strong> are included in your projection.</div>'
+          : '<div class="iitem" style="border-color:var(--warn)">⚠ Superannuation is not enabled. Enable it on the Superannuation page to include it in projections.</div>') +
+      '</div>';
+  }
+}
+
+function doExport() {
+  var data = JSON.stringify(ST, null, 2);
+  var blob = new Blob([data], {type:'application/json'});
+  var url  = URL.createObjectURL(blob);
+  var a    = document.createElement('a');
+  a.href = url;
+  a.download = 'wealthpath-' + new Date().toISOString().slice(0,10) + '.json';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+function doImport(evt) {
+  var file = evt.target.files && evt.target.files[0];
+  if(!file) return;
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      var d = JSON.parse(e.target.result);
+      if(!d || typeof d !== 'object') { alert('Invalid JSON file.'); return; }
+      ST.profile     = d.profile     || ST.profile;
+      ST.investments = Array.isArray(d.investments) ? d.investments : [];
+      ST.income      = Array.isArray(d.income)      ? d.income      : [];
+      ST.expenses    = Array.isArray(d.expenses)    ? d.expenses    : [];
+      ST.super       = d.super       || {enabled:false,type:'standard',balance:'',contrib:'',smsfProp:'',smsfLoan:''};
+      ST.meta        = d.meta        || {importedFromJson:true};
+      ST.meta.importedFromJson = true;
+      // targetType backwards compat
+      if(d.targetPortfolioType) ST.profile.targetType = d.targetPortfolioType;
+      persist();
+      renderNavButtons();
+      renderHomeStats();
+      renderInvList();
+      renderIncList();
+      renderExpList();
+      renderSuperFields();
+      hydrateProfileFields();
+      showPage('investments');
+    } catch(err) {
+      alert('Could not read file: ' + err.message);
+    }
+  };
+  reader.readAsText(file);
 }
 
 function formatSavingsRange(singleRange, coupleRange) {
@@ -1533,72 +2041,58 @@ function formatSavingsRange(singleRange, coupleRange) {
   }
   return 'Lifestyle depends on final balance';
 }
-
 function getLifestyleNarrative(lifestyle) {
   var map = {Basic:'a leaner retirement with a strong reliance on the Age Pension', Modest:'a modest retirement with some flexibility', Comfortable:'a comfortable retirement with travel and regular discretionary spending', Luxury:'a high-standard retirement with premium travel and strong lifestyle flexibility'};
   return map[lifestyle] || 'a balanced retirement lifestyle';
 }
-
-function doExport(){
-  var blob=new Blob([JSON.stringify(ST,null,2)],{type:'application/json'});
-  var a=document.createElement('a');
-  a.href=URL.createObjectURL(blob);
-  a.download='wealthpath-backup.json';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  setTimeout(function(){URL.revokeObjectURL(a.href);},1000);
+function applySuggestedRiskProfile() {
+  var suggested = getSuggestedRiskProfile(ST.profile.age, ST.profile.lifestyle);
+  ST.profile.targetType = normalizeRiskProfile(suggested);
+  var select = document.getElementById('targetPortfolioType');
+  if (select) select.value = ST.profile.targetType;
+  persist();
+  return ST.profile.targetType;
 }
 
-function doImport(event){
-  var input = event.target;
-  var file = input && input.files && input.files[0]; if(!file) return;
-  var reader=new FileReader();
-  reader.onload=function(e){
-    try{
-      var raw = e.target.result || '';
-      raw = raw.replace(/^\uFEFF/, '');
-      var d = JSON.parse(raw);
-      if(!d || typeof d !== 'object') throw new Error('Imported file is not a JSON object.');
-      ST.profile=Object.assign({name:'',age:'',targetType:'Balanced'}, d.profile||{});
-      ST.profile.targetType = ST.profile.targetType || 'Balanced';
-      ST.investments=Array.isArray(d.investments)?d.investments:[];
-      ST.income=Array.isArray(d.income)?d.income:[];
-      ST.meta.importedFromJson = true;
-      ST.meta.investPopupShown = ST.meta.investPopupShown || false;
-      ST.meta.incomePopupShown = ST.meta.incomePopupShown || false;
-      persist();
-      showPage('home');
-      selectHomeMode('new');
-      hydrateProfileFields();
-      renderHomeStats(); renderInvList(); renderIncList(); renderNavButtons();
-      alert('Imported: '+ST.investments.length+' investments, '+ST.income.length+' income sources.');
-    }catch(err){alert('Invalid JSON file: '+err.message);}
-    if(input) input.value='';
-  };
-  reader.readAsText(file);
-}
 
-// ── INIT ──────────────────────────────────────────────────────
+// ── INIT ─────────────────────────────────────────────────────
 window.addEventListener('beforeunload', persist);
-window.addEventListener('pageshow', function(){ persist(); });
+window.addEventListener('pageshow', function(event){
+  if (event.persisted || (performance.getEntriesByType && performance.getEntriesByType('navigation').length && performance.getEntriesByType('navigation')[0].type === 'reload')) {
+    resetAppState();
+    showPage('home');
+  }
+  persist();
+});
 
 var initialState = (function(){
   try {
     var r = JSON.parse(localStorage.getItem(SK));
     if (r && typeof r === 'object') {
+      // Ensure all new keys exist (backward compat)
+      r.expenses = Array.isArray(r.expenses) ? r.expenses : [];
+      r.super    = r.super || {enabled:false,type:'standard',balance:'',contrib:'',smsfProp:'',smsfLoan:''};
+      r.meta     = r.meta  || {importedFromJson:false};
+      r.profile  = r.profile || {name:'',age:'',retireAge:67,lifestyle:'Comfortable',targetType:'Balanced'};
+      r.profile.retireAge  = r.profile.retireAge  || 67;
+      r.profile.lifestyle  = r.profile.lifestyle  || 'Comfortable';
+      r.profile.targetType = r.profile.targetType || 'Balanced';
       return r;
     }
   } catch(e) {}
   return null;
 })();
-if(initialState){ ST = initialState; }
+if(initialState) { ST = initialState; }
 
 renderHomeStats();
 renderInvList();
 renderIncList();
-selectHomeMode();
+renderExpList();
+renderSuperFields();
+selectHomeMode(ST.meta && ST.meta.importedFromJson ? 'existing' : 'new');
 showPage('home');
+
+
 </script>
 </body>
 </html>
