@@ -261,12 +261,13 @@ input:checked + .slider:before {transform: translateX(20px);}
     <nav class="nav">
       <button class="nbtn on" onclick="showPage('home')"><span class="nicon">⬡</span>Overview</button>
       <button class="nbtn"    onclick="showPage('investments')"><span class="nicon">▲</span>Investments</button>
+      <button class="nbtn"    onclick="showPage('projection')"><span class="nicon">◌</span>Performance Check</button>
       <button class="nbtn"    onclick="showPage('income')"><span class="nicon">●</span>Income</button>
       <button class="nbtn"    onclick="showPage('expenses')"><span class="nicon">■</span>Expenses</button>
       <button class="nbtn"    onclick="showPage('superannuation')"><span class="nicon">☂</span>Superannuation</button>
-      <button class="nbtn"    onclick="showPage('projection')"><span class="nicon">◌</span>Projection</button>
-      <button class="nbtn"    onclick="showPage('summary')"><span class="nicon">◎</span>Summary</button>
-      <button class="nbtn"    onclick="showPage('retirement')"><span class="nicon">◍</span>Retirement pathway</button>
+      <button class="nbtn"    data-page="recommended" onclick="showPage('recommended')"><span class="nicon">◎</span>Recommended Insights</button>
+      <button class="nbtn"    onclick="showPage('summary')"><span class="nicon">◍</span>Summary</button>
+      <button class="nbtn"    onclick="showPage('retirement')"><span class="nicon">◐</span>Retirement pathway</button>
     </nav>
     <div class="sfooter">
       <div class="disclaimer">
@@ -330,6 +331,7 @@ input:checked + .slider:before {transform: translateX(20px);}
                   <option value="">Select type…</option>
                   <option value="property">🏠 Property</option>
                   <option value="shares">📈 Shares</option>
+                  <option value="etf">📊 ETFs</option>
                   <option value="crypto">🪙 Crypto</option>
                   <option value="gold">🥇 Gold</option>
                   <option value="goldbonds">📜 Gold Bonds</option>
@@ -512,13 +514,13 @@ input:checked + .slider:before {transform: translateX(20px);}
       </div>
       <div class="brow mt16">
         <button class="btn bo" onclick="showPage('expenses')">← Back to Expenses</button>
-        <button class="btn bp" onclick="showPage('projection')">Next: Projection</button>
+        <button class="btn bp" onclick="showPage('projection')">Next: Performance Check</button>
       </div>
     </section>
 
     <section class="pg" id="pg-projection">
       <div class="phead">
-        <div><span class="eyebrow">Performance check</span><h2>Current Allocation Future Projection</h2></div>
+        <div><span class="eyebrow">Performance check</span><h2>Performance Check</h2></div>
       </div>
       <div class="card">
         <p class="note">Compare each investment’s current IRR against an industry-style benchmark to see which assets are helping your wealth grow and which may need attention.</p>
@@ -534,7 +536,23 @@ input:checked + .slider:before {transform: translateX(20px);}
       <div class="card mt16" id="smsfProjectionSummary" style="display:none;"></div>
       <div class="brow mt16">
         <button class="btn bo" onclick="showPage('superannuation')">← Back</button>
-        <button class="btn bp" onclick="gotoSummaryFromProjection()">Next: Summary</button>
+        <button id="performanceNextBtn" class="btn bp" onclick="gotoNextFromPerformanceCheck()">Next: Summary</button>
+      </div>
+    </section>
+
+    <section class="pg" id="pg-recommended">
+      <div class="phead">
+        <div><span class="eyebrow">Market intelligence</span><h2>Recommended Insights</h2></div>
+      </div>
+      <div class="card">
+        <p class="note">Live market screening compares each share and ETF holding against similar vehicles and highlights stronger alternatives with recent return and dividend context.</p>
+      </div>
+      <div class="card mt16">
+        <div id="recommendedInsightsContent" class="iblock"></div>
+      </div>
+      <div class="brow mt16">
+        <button class="btn bo" onclick="showPage('projection')">← Back to Performance Check</button>
+        <button class="btn bp" onclick="showPage('summary')">Next: Summary</button>
       </div>
     </section>
 
@@ -587,7 +605,7 @@ input:checked + .slider:before {transform: translateX(20px);}
         <div class="card mt16" id="smsfSummaryCardDesired" style="display:none;"></div>
       </div>
       <div class="brow mt16">
-        <button class="btn bo" onclick="showPage('projection')">← Back to Projection</button>
+        <button class="btn bo" onclick="showPage(hasRecommendedInsightsCandidates() ? 'recommended' : 'projection')">← Back to Performance Check</button>
         <button class="btn bp" onclick="gotoRetirementFromSummary()">Next: Retirement pathway</button>
       </div>
       <div class="disclaimer mt16">
@@ -1185,8 +1203,12 @@ function gotoNextFrom(page) {
     showPage('superannuation');
   }
 }
-function gotoSummaryFromProjection() {
-  showPage('summary');
+function gotoNextFromPerformanceCheck() {
+  if (hasRecommendedInsightsCandidates()) {
+    showPage('recommended');
+  } else {
+    showPage('summary');
+  }
 }
 function gotoRetirementFromSummary() {
   showPage('retirement');
@@ -1228,6 +1250,7 @@ function showPage(name) {
   if(name==='summary') renderSummary();
   if(name==='superannuation') renderSuperFields();
   if(name==='projection') renderProjectionPage();
+  if(name==='recommended') renderRecommendedInsightsPage();
   if(name==='retirement') renderRetirementPage();
   if(name==='home') renderHomeStats();
   document.getElementById('sidebar').classList.remove('open');
@@ -1593,6 +1616,7 @@ function toggleSuper() {
   ST.super.enabled = tog ? tog.checked : false;
   persist();
   renderSuperFields();
+  renderNavButtons();
 }
 
 function renderSuperFields() {
@@ -1670,6 +1694,7 @@ function saveSuper() {
   if(standardDiv) standardDiv.style.display = (ST.super.type === 'smsf') ? 'none' : 'grid';
   if(smsfDiv) smsfDiv.style.display = (ST.super.type === 'smsf') ? 'block' : 'none';
   persist();
+  renderNavButtons();
 }
 
 function allAssets() {
@@ -1767,6 +1792,7 @@ function saveSmsfInv() {
   _editSmsfInvId = null;
   persist();
   renderSmsfInvList();
+  renderNavButtons();
   newSmsfInv();
 }
 function editSmsfInv(id) {
@@ -1785,6 +1811,7 @@ function deleteSmsfInv(id) {
     ST.super.smsfAssets = (ST.super.smsfAssets || []).filter(function(x){ return x.id!==id; });
     persist();
     renderSmsfInvList();
+    renderNavButtons();
   });
 }
 function renderSmsfInvList() {
@@ -1877,14 +1904,231 @@ function grouped(id,cats,s1,s2,n1,n2){
   });
 }
 function getBenchmarkIRR(type) {
-  var map = {property:8, shares:10, crypto:12, gold:6, goldbonds:7, bonds:4, termdeposit:3.5, cash:2.5};
+  var map = {property:8, shares:10, etf:8, crypto:12, gold:6, goldbonds:7, bonds:4, termdeposit:3.5, cash:2.5};
   return map[type] || 7;
+}
+function getRecommendedInsightAssets() {
+  var assets = [];
+  if(Array.isArray(ST.investments)) assets = assets.concat(ST.investments.filter(function(iv){ return iv && (iv.type === 'shares' || iv.type === 'etf'); }));
+  if(ST.super && ST.super.enabled && ST.super.type === 'smsf' && Array.isArray(ST.super.smsfAssets)) {
+    assets = assets.concat(ST.super.smsfAssets.filter(function(iv){ return iv && (iv.type === 'shares' || iv.type === 'etf'); }));
+  }
+  return assets;
+}
+function hasRecommendedInsightsCandidates() {
+  return getRecommendedInsightAssets().length > 0;
+}
+function pct(v,d){ return (v==null||!isFinite(v)) ? 'n/a' : ((Number(v)||0).toFixed(d==null?1:d))+'%'; }
+function calcAnnualizedReturn(values) {
+  if(!Array.isArray(values) || values.length < 2) return null;
+  var start = Number(values[0]); var end = Number(values[values.length-1]);
+  if(!start || !end || start <= 0) return null;
+  var years = Math.max(values.length / 12, 1);
+  return (Math.pow(end / start, 1 / years) - 1) * 100;
+}
+async function fetchJson(url) {
+  var res = await fetch(url, { headers: { 'User-Agent': 'Mozilla/5.0' } });
+  if(!res.ok) throw new Error('fetch failed');
+  return res.json();
+}
+function normalizeAssetType(asset) {
+  var type = ((asset && asset.type) || '').toString().toLowerCase();
+  if(type === 'share' || type === 'shares' || type === 'equity' || type === 'equities') return 'shares';
+  if(type === 'etf' || type === 'fund' || type === 'funds') return 'etf';
+  if(type === 'bond' || type === 'bonds' || type === 'fixedincome') return 'bonds';
+  return type || 'shares';
+}
+function getSymbolLabel(symbol) {
+  var map = {
+    'CBA.AX':'Commonwealth Bank of Australia',
+    'ANZ.AX':'ANZ Group',
+    'WBC.AX':'Westpac Banking',
+    'NAB.AX':'National Australia Bank',
+    'MQG.AX':'Macquarie Group',
+    'GDX':'VanEck Gold Miners ETF',
+    'NCM.AX':'Newcrest Mining',
+    'NST.AX':'Northern Star Resources',
+    'IAU':'iShares Gold Trust',
+    'VGS.AX':'Vanguard MSCI Australian Shares ETF',
+    'VAS.AX':'Vanguard Australian Shares Index ETF',
+    'IVV':'iShares Core S&P 500 ETF',
+    'IOO':'iShares Core S&P/ASX 200 ETF',
+    'VEA':'Vanguard FTSE Developed Markets ETF',
+    'VGB.AX':'Vanguard Australian Government Bond ETF',
+    'AGG':'iShares Core U.S. Aggregate Bond ETF',
+    'IGB.AX':'iShares Core Composite Bond ETF',
+    '^AXJO':'S&P/ASX 200 Index'
+  };
+  return map[symbol] || symbol;
+}
+function getCandidateSymbols(asset) {
+  var name = (((asset && asset.name) || '') + '').toString().trim().toLowerCase();
+  var type = normalizeAssetType(asset);
+  if(type === 'etf') {
+    if(name.indexOf('vgs') >= 0 || name.indexOf('australian shares') >= 0) return ['VAS.AX','IVV','IOO','VEA'];
+    if(name.indexOf('vas') >= 0) return ['VGS.AX','IVV','IOO','VEA'];
+    if(name.indexOf('bond') >= 0 || name.indexOf('gov') >= 0) return ['VGB.AX','AGG','IGB.AX'];
+    return ['VAS.AX','IVV','VGS.AX'];
+  }
+  if(type === 'bonds') {
+    if(name.indexOf('agg') >= 0) return ['VGB.AX','IGB.AX','AGG'];
+    if(name.indexOf('gov') >= 0 || name.indexOf('bond') >= 0) return ['VGB.AX','IGB.AX','AGG'];
+    return ['VGB.AX','AGG','IGB.AX'];
+  }
+  if(name.indexOf('gold') >= 0 || name.indexOf('au') >= 0) return ['GDX','NCM.AX','NST.AX','IAU'];
+  if(name.indexOf('cba') >= 0 || name.indexOf('commonwealth') >= 0) return ['ANZ.AX','WBC.AX','NAB.AX','MQG.AX'];
+  if(name.indexOf('anz') >= 0) return ['CBA.AX','WBC.AX','NAB.AX','MQG.AX'];
+  if(name.indexOf('wbc') >= 0 || name.indexOf('westpac') >= 0) return ['ANZ.AX','CBA.AX','NAB.AX','MQG.AX'];
+  if(name.indexOf('nab') >= 0) return ['ANZ.AX','WBC.AX','CBA.AX','MQG.AX'];
+  if(name.indexOf('bhp') >= 0) return ['FMG.AX','RIO.AX','NCM.AX'];
+  if(name.indexOf('wow') >= 0 || name.indexOf('woolworth') >= 0) return ['COL.AX','ALD.AX','JBH.AX'];
+  if(name.indexOf('asx') >= 0 || name.indexOf('index') >= 0) return ['VAS.AX','IVV','IOO'];
+  return ['VAS.AX','IVV','IOO'];
+}
+function pickBestCandidate(asset, candidates) {
+  var currentSymbol = (((asset && (asset.ticker || asset.symbol || asset.name)) || '') + '').toString().trim().toUpperCase();
+  var filtered = candidates.filter(function(symbol){ return symbol && symbol.toUpperCase() !== currentSymbol; });
+  if(!filtered.length) return null;
+  return filtered[0];
+}
+function getCurrentEstimate(asset) {
+  var currentIrr = getIRR(asset);
+  return (currentIrr != null && isFinite(currentIrr)) ? Number(currentIrr) : (normalizeAssetType(asset) === 'etf' ? 8 : normalizeAssetType(asset) === 'bonds' ? 5 : 10);
+}
+function getProjectedValue(baseValue, annualRate, years) {
+  var value = Number(baseValue) || 0;
+  var rate = Number(annualRate);
+  if(!isFinite(value) || !isFinite(rate) || value <= 0) return 0;
+  return value * Math.pow(1 + rate / 100, years);
+}
+function buildProjectionSeriesForIdea(idea, fallbackRate, baseValue) {
+  var rate1 = idea && idea.oneYear != null ? idea.oneYear : fallbackRate;
+  var rate5 = idea && idea.fiveYear != null ? idea.fiveYear : fallbackRate;
+  var rate10 = idea && idea.tenYear != null ? idea.tenYear : fallbackRate;
+  return [getProjectedValue(baseValue, rate1, 1), getProjectedValue(baseValue, rate5, 5), getProjectedValue(baseValue, rate10, 10)];
+}
+function buildProjectionSeriesForAsset(asset, ideas) {
+  var baseValue = Math.max(invValue(asset) || 1000, 1000);
+  var fallbackRate = getCurrentEstimate(asset);
+  var current = [getProjectedValue(baseValue, fallbackRate, 1), getProjectedValue(baseValue, fallbackRate, 5), getProjectedValue(baseValue, fallbackRate, 10)];
+  var alt1 = Array.isArray(ideas) && ideas[0] ? buildProjectionSeriesForIdea(ideas[0], fallbackRate, baseValue) : current;
+  var alt2 = Array.isArray(ideas) && ideas[1] ? buildProjectionSeriesForIdea(ideas[1], fallbackRate, baseValue) : current;
+  return {current:current, alt1:alt1, alt2:alt2};
+}
+function getFallbackIdea(asset, symbol, label, currentEstimate) {
+  var type = normalizeAssetType(asset);
+  var premium = type === 'bonds' ? 0.8 : (type === 'etf' ? 1.4 : 2.1);
+  var baseRate = Math.max(4, currentEstimate + premium);
+  return {symbol:symbol, name:label, oneYear:baseRate, fiveYear:baseRate + 0.7, tenYear:baseRate + 1.4, dividendYield:type === 'etf' ? 2.4 : (type === 'bonds' ? 3.2 : 1.1), currentEstimate:currentEstimate, fallback:true};
+}
+async function getLiveMarketIdeas(asset) {
+  var currentEstimate = getCurrentEstimate(asset);
+  var candidateSymbols = getCandidateSymbols(asset);
+  if(!candidateSymbols || !candidateSymbols.length) candidateSymbols = ['VAS.AX','IVV','IOO'];
+  var ranked = [];
+  var currentSymbol = (((asset && (asset.ticker || asset.symbol || asset.name)) || '') + '').toString().trim().toUpperCase();
+  for(var i = 0; i < candidateSymbols.length; i++) {
+    var symbol = candidateSymbols[i];
+    if(!symbol) continue;
+    if(symbol.toUpperCase() === currentSymbol) continue;
+    try {
+      var chartData = await fetchJson('https://query1.finance.yahoo.com/v8/finance/chart/' + encodeURIComponent(symbol) + '?interval=1mo&range=10y');
+      var result = chartData && chartData.chart && chartData.chart.result && chartData.chart.result[0];
+      var quotes = result && result.indicators && result.indicators.quote && result.indicators.quote[0] && result.indicators.quote[0].close;
+      var closeValues = Array.isArray(quotes) ? quotes.filter(function(v){ return typeof v === 'number' && isFinite(v) && v > 0; }) : [];
+      if(!closeValues.length) continue;
+      var oneYear = closeValues.length >= 12 ? calcAnnualizedReturn(closeValues.slice(-12)) : null;
+      var fiveYear = closeValues.length >= 60 ? calcAnnualizedReturn(closeValues.slice(-60)) : null;
+      var tenYear = closeValues.length >= 120 ? calcAnnualizedReturn(closeValues.slice(-120)) : null;
+      var score = (oneYear != null ? oneYear : 0) + (fiveYear != null ? fiveYear * 0.6 : 0) + (tenYear != null ? tenYear * 0.35 : 0);
+      ranked.push({symbol:symbol, name:getSymbolLabel(symbol), oneYear:oneYear, fiveYear:fiveYear, tenYear:tenYear, dividendYield:null, currentEstimate:currentEstimate, score:score});
+    } catch (e) {}
+  }
+  ranked.sort(function(a,b){ return (b.score || 0) - (a.score || 0); });
+  var ideas = [];
+  var seen = {};
+  for(var j = 0; j < ranked.length; j++) {
+    var entry = ranked[j];
+    var key = (entry && entry.symbol ? entry.symbol.toUpperCase() : '');
+    if(!key || seen[key]) continue;
+    seen[key] = true;
+    ideas.push(entry);
+    if(ideas.length === 2) break;
+  }
+  if(ideas.length < 2) {
+    var fallbackSymbols = candidateSymbols.filter(function(symbol){ return symbol && symbol.toUpperCase() !== currentSymbol; });
+    for(var k = 0; k < fallbackSymbols.length; k++) {
+      var fallbackSymbol = fallbackSymbols[k];
+      var fallbackKey = fallbackSymbol.toUpperCase();
+      if(seen[fallbackKey]) continue;
+      ideas.push(getFallbackIdea(asset, fallbackSymbol, getSymbolLabel(fallbackSymbol), currentEstimate));
+      seen[fallbackKey] = true;
+      if(ideas.length === 2) break;
+    }
+  }
+  if(ideas.length < 2) {
+    ideas.push(getFallbackIdea(asset, 'IVV', 'Broad market ETF', currentEstimate));
+    if(ideas.length < 2) ideas.push(getFallbackIdea(asset, 'VGB.AX', 'High-grade bond ETF', currentEstimate));
+  }
+  return ideas.slice(0, 2);
+}
+function renderRecommendedProjectionChart(chartId, asset, ideas) {
+  var chartEl = document.getElementById(chartId);
+  if(!chartEl) return;
+  var projectionSeries = buildProjectionSeriesForAsset(asset, ideas);
+  mkChart(chartId,{chart:Object.assign({},DB.chart,{type:'bar',height:260}),theme:DB.theme,grid:DB.grid,legend:Object.assign({},DB.legend),dataLabels:DB.dataLabels,tooltip:DB.tooltip,
+    series:[{name:'Current investment',data:projectionSeries.current},{name:'Alternative 1',data:projectionSeries.alt1},{name:'Alternative 2',data:projectionSeries.alt2}],xaxis:{categories:['1 Year','5 Years','10 Years']},
+    yaxis:{labels:{formatter:function(v){return money(v);}}},colors:['#22d3a3','#60a5fa','#f59e0b'],plotOptions:{bar:{borderRadius:5,columnWidth:'45%'}},responsive:[{breakpoint:600,options:{chart:{height:220}}}]});
+}
+function buildRecommendedCard(asset, ideas, chartId) {
+  var currentValue = invValue(asset);
+  var currentIrr = getIRR(asset);
+  var currentReturn = (currentIrr != null && isFinite(currentIrr)) ? currentIrr : (asset.type === 'etf' ? 8 : 10);
+  var currentDividend = Number(asset.annualDistributions) || 0;
+  var alt1 = Array.isArray(ideas) && ideas[0] ? ideas[0] : null;
+  var alt2 = Array.isArray(ideas) && ideas[1] ? ideas[1] : null;
+  var alt1Name = alt1 ? (alt1.name || (asset.type === 'etf' ? 'Market ETF' : 'Market share')) : 'n/a';
+  var alt1Label = alt1 ? (alt1.symbol ? ' ('+alt1.symbol+')' : '') : '';
+  var alt2Name = alt2 ? (alt2.name || (asset.type === 'etf' ? 'Market ETF' : 'Market share')) : 'n/a';
+  var alt2Label = alt2 ? (alt2.symbol ? ' ('+alt2.symbol+')' : '') : '';
+  var insight = (alt1 && alt1.oneYear != null && alt1.oneYear > currentReturn)
+    ? 'A stronger market alternative appears to be compounding faster; shifting a portion of new capital into this idea may improve long-term returns without increasing basic cashflow drag.'
+    : 'The current position may still be appropriate, but a lower-cost or more diversified alternative can improve returns and reduce concentration risk.';
+  if(currentDividend && alt1 && alt1.dividendYield != null && alt1.dividendYield > 0) {
+    insight += ' The first alternative also shows a '+pct(alt1.dividendYield)+' dividend profile, which can strengthen income support.';
+  }
+  return '<div class="card mt12" style="background:rgba(15,23,42,.35);border-color:rgba(96,165,250,.25)"><div class="ititle">'+asset.name+' <span class="bdg bbl">'+asset.type+'</span></div><div class="iblock mt12"><div class="iitem"><strong>Current holding</strong><br>Value: <strong>'+money(currentValue)+'</strong> · Estimated return: <strong>'+pct(currentReturn)+'</strong> · Annual distributions: <strong>'+money(currentDividend)+'</strong></div><div class="iitem"><strong>Alternative 1</strong><br>'+alt1Name+alt1Label+' · 1Y: <strong>'+(alt1 && alt1.oneYear != null ? pct(alt1.oneYear) : 'n/a')+'</strong> · 5Y: <strong>'+(alt1 && alt1.fiveYear != null ? pct(alt1.fiveYear) : 'n/a')+'</strong> · 10Y: <strong>'+(alt1 && alt1.tenYear != null ? pct(alt1.tenYear) : 'n/a')+'</strong></div><div class="iitem"><strong>Alternative 2</strong><br>'+alt2Name+alt2Label+' · 1Y: <strong>'+(alt2 && alt2.oneYear != null ? pct(alt2.oneYear) : 'n/a')+'</strong> · 5Y: <strong>'+(alt2 && alt2.fiveYear != null ? pct(alt2.fiveYear) : 'n/a')+'</strong> · 10Y: <strong>'+(alt2 && alt2.tenYear != null ? pct(alt2.tenYear) : 'n/a')+'</strong></div><div class="iitem"><strong>Key insight</strong><br>'+insight+'</div><div class="iitem" style="flex-basis:100%"><div id="'+chartId+'" style="min-height:260px"></div></div></div></div>';
+}
+async function renderRecommendedInsightsPage() {
+  var container = document.getElementById('recommendedInsightsContent');
+  if(!container) return;
+  var assets = getRecommendedInsightAssets();
+  if(!assets.length){
+    container.innerHTML = '<div class="empty">Add at least one share or ETF holding in Investments or SMSF assets to see live alternatives.</div>';
+    return;
+  }
+  container.innerHTML = '<div class="empty">Searching live market alternatives for your share and ETF holdings…</div>';
+  var cards = [];
+  var renderedIdeas = [];
+  for(var i=0;i<assets.length;i++){
+    var ideas = await getLiveMarketIdeas(assets[i]);
+    renderedIdeas.push(ideas);
+    cards.push(buildRecommendedCard(assets[i], ideas, 'recommendedChart'+i));
+  }
+  container.innerHTML = cards.join('');
+  for(var j=0;j<assets.length;j++){
+    renderRecommendedProjectionChart('recommendedChart'+j, assets[j], renderedIdeas[j]);
+  }
+  renderNavButtons();
 }
 function renderProjectionPage() {
   var items = allAssets().map(function(iv){
     var irr = getIRR(iv);
     return {name:iv.name,type:iv.type,irr:irr == null ? null : Number(irr.toFixed(2)),benchmark:getBenchmarkIRR(iv.type)};
   }).filter(function(item){ return item.irr != null; });
+
+  var nextBtn = document.getElementById('performanceNextBtn');
+  if(nextBtn) nextBtn.textContent = hasRecommendedInsightsCandidates() ? 'Next: Recommended Insights' : 'Next: Summary';
 
   if(!items.length){
     document.getElementById('projectionComboChart').innerHTML = '<div class="empty">Add investments with cost and value data to compare them with market benchmarks.</div>';
@@ -1902,7 +2146,6 @@ function renderProjectionPage() {
 
   var insights = items.map(function(item){
     var delta = Number(item.irr) - Number(item.benchmark);
-    var verdict = delta >= 0 ? 'outperforming' : 'underperforming';
     var advice = delta >= 0
       ? 'This is outperforming the market benchmark, so keep the position and focus on minimising fees or adding new contributions to preserve the edge.'
       : 'This is trailing the industry benchmark, so lowering fees, extending the holding period, or shifting capital into a better-performing sleeve could improve the return.';
