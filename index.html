@@ -387,6 +387,7 @@ input:checked + .slider:before {transform: translateX(20px);}
         <div class="card">
           <span class="eyebrow">Form</span>
           <h3 id="incTitle">Add income source</h3>
+          <p class="note mt8" id="incomeRentNote" style="display:none">You have added rent to a property investment. Please enter Rental income on this page so your total cash flow is calculated correctly.</p>
           <div class="fstack mt12">
             <div class="fgrid">
               <div class="field"><span>Source name</span><input id="incName" type="text" placeholder="e.g. Salary, Spouse income"></div>
@@ -1267,6 +1268,18 @@ function switchSummaryTab(tab) {
   renderSummaryInsights(tab);
 }
 
+function hasPropertyRentalIncome() {
+  return Array.isArray(ST.investments) && ST.investments.some(function(iv){
+    return iv && iv.type === 'property' && Number(iv.monthlyRent) > 0;
+  });
+}
+
+function renderIncomeNote() {
+  var note = document.getElementById('incomeRentNote');
+  if(!note) return;
+  note.style.display = hasPropertyRentalIncome() ? 'block' : 'none';
+}
+
 function showPage(name) {
   document.querySelectorAll('.pg').forEach(function(p){p.classList.remove('on');});
   document.querySelectorAll('.nbtn').forEach(function(b){b.classList.remove('on');});
@@ -1281,6 +1294,7 @@ function showPage(name) {
   if(name==='recommended') renderRecommendedInsightsPage();
   if(name==='retirement') renderRetirementPage();
   if(name==='home') renderHomeStats();
+  if(name==='income') renderIncomeNote();
   document.getElementById('sidebar').classList.remove('open');
   document.getElementById('ov').classList.remove('show');
 }
