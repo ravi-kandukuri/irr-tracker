@@ -446,6 +446,7 @@ input:checked + .slider:before {transform: translateX(20px);}
                   <option value="weekly">Weekly</option>
                   <option value="fortnightly">Fortnightly</option>
                   <option value="monthly">Monthly</option>
+                  <option value="quarterly">Quarterly</option>
                   <option value="annual">Annual (per year)</option>
                 </select>
               </div>
@@ -1071,6 +1072,7 @@ function totalLivingExpenses() {
     var a=Number(ex.amount)||0;
     if(ex.freq==='annual') return s+a;
     if(ex.freq==='monthly') return s+a*12;
+    if(ex.freq==='quarterly') return s+a*4;
     if(ex.freq==='fortnightly') return s+a*26;
     if(ex.freq==='weekly') return s+a*52;
     return s+a;
@@ -1631,11 +1633,12 @@ function renderExpList() {
     el.innerHTML = '<div class="empty">No expenses yet. Use the form to add one.</div>';
     return;
   }
-  var fmap = {weekly:'Weekly', fortnightly:'Fortnightly', monthly:'Monthly', annual:'Annual'};
+  var fmap = {weekly:'Weekly', fortnightly:'Fortnightly', monthly:'Monthly', quarterly:'Quarterly', annual:'Annual'};
   var totalAnnual = totalLivingExpenses();
   el.innerHTML = ST.expenses.map(function(ex){
     var annAmt = (ex.freq==='weekly') ? ex.amount*52
                : (ex.freq==='fortnightly') ? ex.amount*26
+               : (ex.freq==='quarterly') ? ex.amount*4
                : (ex.freq==='monthly') ? ex.amount*12 : ex.amount;
     return '<div class="icard">' +
       '<div class="ititle">' + ex.name + '</div>' +
