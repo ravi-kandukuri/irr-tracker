@@ -728,11 +728,16 @@ var ST = (function(){
       r.super.smsfContrib = r.super.smsfContrib || '';
       r.super.smsfSpouseContrib = r.super.smsfSpouseContrib || '';
       r.super.smsfAssets = Array.isArray(r.super.smsfAssets) ? r.super.smsfAssets : [];
-      r.meta       = r.meta       || {importedFromJson:false,investPopupShown:false,incomePopupShown:false};
+      r.meta       = r.meta       || {importedFromJson:false,investPopupShown:false,incomePopupShown:false,incomeAlertShown:false,expensesAlertShown:false};
+      r.meta.importedFromJson = r.meta.importedFromJson === true;
+      r.meta.investPopupShown = r.meta.investPopupShown === true;
+      r.meta.incomePopupShown = r.meta.incomePopupShown === true;
+      r.meta.incomeAlertShown = r.meta.incomeAlertShown === true;
+      r.meta.expensesAlertShown = r.meta.expensesAlertShown === true;
       return r;
     }
   } catch(e) {}
-  return {profile:{name:'',age:'',retireAge:67,lifestyle:'Comfortable',targetType:'Balanced'},investments:[],income:[],expenses:[],super:{enabled:false, type:'standard', balance:'', contrib:'', spouseBalance:'', spouseContrib:'', smsfBalance:'', smsfContrib:'', smsfSpouseContrib:'', smsfAssets:[]},meta:{importedFromJson:false,investPopupShown:false,incomePopupShown:false}};
+  return {profile:{name:'',age:'',retireAge:67,lifestyle:'Comfortable',targetType:'Balanced'},investments:[],income:[],expenses:[],super:{enabled:false, type:'standard', balance:'', contrib:'', spouseBalance:'', spouseContrib:'', smsfBalance:'', smsfContrib:'', smsfSpouseContrib:'', smsfAssets:[]},meta:{importedFromJson:false,investPopupShown:false,incomePopupShown:false,incomeAlertShown:false,expensesAlertShown:false}};
 })();
 
 function persist() {
@@ -752,7 +757,7 @@ var DB = {
 
 function clearStoredState() {
   try { localStorage.removeItem(SK); } catch(e) {}
-  ST = {profile:{name:'',age:'',retireAge:67,lifestyle:'Comfortable',targetType:'Balanced'},investments:[],income:[],expenses:[],super:{enabled:false, type:'standard', balance:'', contrib:'', spouseBalance:'', spouseContrib:'', smsfBalance:'', smsfContrib:'', smsfSpouseContrib:'', smsfAssets:[]},meta:{importedFromJson:false,investPopupShown:false,incomePopupShown:false}};
+  ST = {profile:{name:'',age:'',retireAge:67,lifestyle:'Comfortable',targetType:'Balanced'},investments:[],income:[],expenses:[],super:{enabled:false, type:'standard', balance:'', contrib:'', spouseBalance:'', spouseContrib:'', smsfBalance:'', smsfContrib:'', smsfSpouseContrib:'', smsfAssets:[]},meta:{importedFromJson:false,investPopupShown:false,incomePopupShown:false,incomeAlertShown:false,expensesAlertShown:false}};
 }
 
 function normalizeRiskProfile(value) {
@@ -1315,12 +1320,16 @@ function showPage(name) {
   if(name==='home') renderHomeStats();
   if(name==='income') {
     renderIncomeNote();
-    if(hasPropertyRentalIncome()) {
-      alert('You have entered rental income details in the Investment page. Please also add the corresponding Rental income on the Income page so annual cash flow is calculated correctly.');
+    if(hasPropertyRentalIncome() && !ST.meta.incomeAlertShown) {
+      alert('Rental income detected — remember to add it on the Income page to ensure accurate annual cash flow calculations.');
+      ST.meta.incomeAlertShown = true;
+      persist();
     }
   }
-  if(name==='expenses' && hasPropertyRentalIncome()) {
-    alert('You have entered rental income in the Investment page. Do not enter investment property expenses on the Expenses page because those costs are already captured in the Investment tab.');
+  if(name==='expenses' && hasPropertyRentalIncome() && !ST.meta.expensesAlertShown) {
+    alert('Investment property expenses are automatically captured in the Investment tab — no need to re-enter them on the Expenses page.');
+    ST.meta.expensesAlertShown = true;
+    persist();
   }
   document.getElementById('sidebar').classList.remove('open');
   document.getElementById('ov').classList.remove('show');
@@ -1994,7 +2003,7 @@ function getBenchmarkIRR(type) {
 }
 function getRecommendedInsightAssets() {
   var assets = [];
-  var includeTypes = {'shares':true,'etf':true,'crypto':true,'gold':true,'goldbonds':true,'bonds':true,'termdeposit':true};
+  var includeTypes = {'shares':true,'etf':true,'crypto':true,'gold':true,'goldbonds':true,'bonds':true,'termdeposit':true,'property':true};
   if(Array.isArray(ST.investments)) assets = assets.concat(ST.investments.filter(function(iv){ return iv && includeTypes[iv.type]; }));
   if(ST.super && ST.super.enabled && ST.super.type === 'smsf' && Array.isArray(ST.super.smsfAssets)) {
     assets = assets.concat(ST.super.smsfAssets.filter(function(iv){ return iv && includeTypes[iv.type]; }));
@@ -2313,11 +2322,17 @@ function buildRecommendedCard(asset, ideas, chartId) {
   var alt1Label = alt1 ? (alt1.symbol ? ((alt1Name || '').toString().toUpperCase().indexOf(alt1.symbol.toString().toUpperCase()) >= 0 ? '' : ' ('+alt1.symbol+')') : '') : '';
   var alt2Name = alt2 ? (alt2.name || (asset.type === 'etf' ? 'Market ETF' : asset.type === 'crypto' ? 'Crypto asset' : asset.type === 'termdeposit' ? 'Term deposit' : 'Market share')) : 'n/a';
   var alt2Label = alt2 ? (alt2.symbol ? ((alt2Name || '').toString().toUpperCase().indexOf(alt2.symbol.toString().toUpperCase()) >= 0 ? '' : ' ('+alt2.symbol+')') : '') : '';
+  var benchmark = getBenchmarkIRR(asset.type);
   var alt1Gap = alt1 && alt1.fiveYear != null ? (alt1.fiveYear - currentReturn) : null;
   var alt2Gap = alt2 && alt2.fiveYear != null ? (alt2.fiveYear - currentReturn) : null;
-  var insight = (alt1Gap != null && alt1Gap >= 4)
-    ? 'A materially stronger alternative is showing a much higher long-run return profile, so shifting a portion of new capital here could lift overall portfolio growth meaningfully.'
-    : 'The current position may still be appropriate, but a lower-cost or more diversified alternative can improve returns and reduce concentration risk.';
+  var insight;
+  if(asset.type === 'property' && currentReturn != null && isFinite(currentReturn) && currentReturn < benchmark) {
+    insight = 'This property is returning below the benchmark for property investments. Consider flipping the property or reallocating capital to a stronger-performing asset to improve returns.';
+  } else {
+    insight = (alt1Gap != null && alt1Gap >= 4)
+      ? 'A materially stronger alternative is showing a much higher long-run return profile, so shifting a portion of new capital here could lift overall portfolio growth meaningfully.'
+      : 'The current position may still be appropriate, but a lower-cost or more diversified alternative can improve returns and reduce concentration risk.';
+  }
   if(currentDividend && alt1 && alt1.dividendYield != null && alt1.dividendYield > 0) {
     insight += ' The first alternative also shows a '+pct(alt1.dividendYield)+' dividend profile, which can strengthen income support.';
   }
@@ -2784,8 +2799,12 @@ function doImport(evt) {
         smsfSpouseContrib: importedSuper.smsfSpouseContrib || '',
         smsfAssets: Array.isArray(importedSuper.smsfAssets) ? importedSuper.smsfAssets : []
       };
-      ST.meta        = d.meta        || {importedFromJson:true};
+      ST.meta        = d.meta        || {importedFromJson:true,investPopupShown:false,incomePopupShown:false,incomeAlertShown:false,expensesAlertShown:false};
       ST.meta.importedFromJson = true;
+      ST.meta.investPopupShown = ST.meta.investPopupShown === true;
+      ST.meta.incomePopupShown = ST.meta.incomePopupShown === true;
+      ST.meta.incomeAlertShown = ST.meta.incomeAlertShown === true;
+      ST.meta.expensesAlertShown = ST.meta.expensesAlertShown === true;
       // targetType backwards compat
       if(d.targetPortfolioType) ST.profile.targetType = d.targetPortfolioType;
       persist();
