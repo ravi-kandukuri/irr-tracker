@@ -1138,9 +1138,10 @@ function avgIRR() {
 }
 function classify(t) {
   var tot=totalPf()||1;
-  var g=(t.shares+t.crypto+t.property)/tot*100;
-  if(g>=70) return 'Aggressive';
-  if(g>=40) return 'Balanced';
+  var g=(Number(t.shares)||0)+(Number(t.etf)||0)+(Number(t.crypto)||0)+(Number(t.property)||0);
+  var growthPct=g/tot*100;
+  if(growthPct>=70) return 'Aggressive';
+  if(growthPct>=40) return 'Balanced';
   return 'Conservative';
 }
 function recAlloc(age, targetType) {
@@ -2556,8 +2557,8 @@ function renderSummary(){
     sc('Growth allocation',pct((rec.Property||0)+(rec.Shares||0)+(rec.Crypto||0)+(rec.Gold||0)+(rec['Gold Bonds']||0)),'Target growth assets')+
     sc('Defensive allocation',pct((rec['Term Deposit']||0)+(rec.Cash||0)+(rec.Bonds||0)),'Target defensive assets');
 
-  var lbs=['Property','Shares','Crypto','Gold','Gold Bonds','Bonds','Term Deposit','Cash'];
-  var avs=[t.property,t.shares,t.crypto,t.gold,t.goldbonds,t.bonds,t.termdeposit,t.cash];
+  var lbs=['Property','Shares','ETFs','Crypto','Gold','Gold Bonds','Bonds','Term Deposit','Cash'];
+  var avs=[t.property,t.shares,t.etf,t.crypto,t.gold,t.goldbonds,t.bonds,t.termdeposit,t.cash];
 
   donut('chAlloc',lbs,avs);
   barV('chRecom',Object.keys(rec),Object.values(rec),'Recommended %','#4f8cff',true);
